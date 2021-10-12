@@ -58,11 +58,13 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
 }
 
 /* Import routes */
-const transactions = require('./routes/transactions');
-const auth = require('./routes/auth');
-const suppliers = require('./routes/suppliers');
-const goods = require('./routes/goods');
-const customers = require('./routes/customers');
+const admins = require('./routes/admins');
+const farmers = require('./routes/farmers');
+const landAreas = require('./routes/landAreas');
+const plants = require('./routes/plants');
+const seedTypes = require('./routes/seedTypes');
+const users = require('./routes/users');
+const vegetables = require('./routes/vegetables');
 
 /* Import errorHandler */
 const errorHandler = require('./middlewares/errorHandler');
@@ -91,16 +93,18 @@ app.get('/', async (req, res, next) => {
   }
 });
 
-app.use('/transactions', transactions);
-app.use('/auth', auth);
-app.use('/suppliers', suppliers);
-app.use('/goods', goods);
-app.use('/customers', customers);
+app.use('/admins', admins);
+app.use('/farmers', farmers);
+app.use('/landAreas', landAreas);
+app.use('/plants', plants);
+app.use('/seedTypes', seedTypes);
+app.use('/users', users);
+app.use('/vegetables', vegetables);
 
 /* If routes not found */
 app.all('*', (req, res, next) => {
   try {
-    next({ message: 'Endpoint not Found', statusCode: 404 });
+    next({ message: 'Endpoint not found', statusCode: 404 });
   } catch (error) {
     next(error);
   }
