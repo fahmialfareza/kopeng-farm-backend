@@ -1,0 +1,37 @@
+{
+  "name": "daftar-tanam-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Fahmi Alfareza",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development npx nodemon index",
+    "seed:dev": "NODE_ENV=development node seeders add",
+    "seed:dev:remove": "NODE_ENV=development node seeders remove",
+    "seed:test": "NODE_ENV=test node seeders add",
+    "seed:test:remove": "NODE_ENV=test node seeders remove",
+    "start": "NODE_ENV=production node index"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-mongo-sanitize": "^2.1.0",
+    "express-rate-limit": "^5.4.1",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.10",
+    "morgan": "^1.10.0",
+    "passport": "^0.5.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "validator": "^13.6.0",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
