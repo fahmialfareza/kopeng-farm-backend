@@ -2,6 +2,18 @@ const jwt = require('jsonwebtoken'); // import jwt
 const { user } = require('../models');
 
 class Auth {
+  async createUser(req, res, next) {
+    try {
+      const newUser = await user.create(req.body);
+
+      const data = await user.findOne({ _id: newUser._id }).select('-password');
+
+      res.status(201).json({ data });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   getToken(req, res, next) {
     try {
       const data = {

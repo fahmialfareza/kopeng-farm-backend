@@ -9,7 +9,6 @@ mongoose
   .then(() => console.log('MongoDB Connected!'))
   .catch((err) => console.error(err));
 
-exports.admin = require('./admin');
 exports.farmer = require('./farmer');
 exports.landArea = require('./landArea');
 exports.plant = require('./plant');

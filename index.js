@@ -58,12 +58,11 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
 }
 
 /* Import routes */
-const admins = require('./routes/admins');
 const farmers = require('./routes/farmers');
 const landAreas = require('./routes/landAreas');
 const plants = require('./routes/plants');
 const seedTypes = require('./routes/seedTypes');
-const users = require('./routes/users');
+const auth = require('./routes/auth');
 const vegetables = require('./routes/vegetables');
 
 /* Import errorHandler */
@@ -93,12 +92,11 @@ app.get('/', async (req, res, next) => {
   }
 });
 
-app.use('/admins', admins);
 app.use('/farmers', farmers);
 app.use('/landAreas', landAreas);
 app.use('/plants', plants);
 app.use('/seedTypes', seedTypes);
-app.use('/users', users);
+app.use('/auth', auth);
 app.use('/vegetables', vegetables);
 
 /* If routes not found */
