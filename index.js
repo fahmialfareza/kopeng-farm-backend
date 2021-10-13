@@ -86,7 +86,7 @@ app.use(express.static('public'));
 /* Use routes */
 app.get('/', async (req, res, next) => {
   try {
-    res.redirect('https://documenter.getpostman.com/view/3884681/TzsfmkQp');
+    res.redirect('https://documenter.getpostman.com/view/3884681/UV5TGfbt');
   } catch (error) {
     next(error);
   }
