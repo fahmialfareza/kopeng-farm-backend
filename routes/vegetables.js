@@ -4,7 +4,7 @@ const { admin, adminOrUser } = require('../middlewares/auth');
 
 const {
   createOrUpdateVegetableValidator,
-} = require('../middlewares/validators/Vegetables');
+} = require('../middlewares/validators/vegetables');
 
 const {
   getAllVegetables,
@@ -12,7 +12,7 @@ const {
   createVegetable,
   updateVegetable,
   deleteVegetable,
-} = require('../controllers/Vegetables');
+} = require('../controllers/vegetables');
 
 const router = express.Router();
 
