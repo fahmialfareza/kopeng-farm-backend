@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
 
+const harvestSchema = new mongoose.Schema({
+  start: {
+    type: Date,
+  },
+  end: {
+    type: Date,
+  },
+});
+
 const plantSchema = new mongoose.Schema(
   // For column
   {
@@ -32,11 +41,11 @@ const plantSchema = new mongoose.Schema(
       required: true,
     },
     harvestEstimation: {
-      type: [Date],
+      type: [harvestSchema],
       required: true,
     },
     harvest: {
-      type: [Date],
+      type: [harvestSchema],
       required: false,
     },
     productionEstimation: {
