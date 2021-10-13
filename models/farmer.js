@@ -6,6 +6,7 @@ const farmerSchema = new mongoose.Schema(
     id_number: {
       type: String,
       required: true,
+      unique: true,
     },
     name: {
       type: String,

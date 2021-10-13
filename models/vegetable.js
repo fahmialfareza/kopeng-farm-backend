@@ -6,6 +6,7 @@ const vegetableSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
     },
   },
   // Enables timestamps

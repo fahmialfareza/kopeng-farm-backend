@@ -1,9 +1,13 @@
 module.exports = (err, req, res, next) => {
-  if (err.code === 11000) {
+  if (err?.message?.includes('Cast to ObjectId')) {
+    err.message = 'ID is not valid!';
+  }
+
+  if (err?.code === 11000) {
     err.messages = [];
 
     for (const property in err.keyValue) {
-      err.messages.push(`${property} has been exist`);
+      err.messages.push(`${property} has been exist!`);
     }
   }
 

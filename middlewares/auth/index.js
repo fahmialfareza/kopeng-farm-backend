@@ -80,7 +80,7 @@ passport.use(
       try {
         const data = await user.findOne({ _id: token.user });
 
-        if (data.role === 'admin') {
+        if (data?.role === 'admin') {
           return done(null, token);
         }
 
@@ -120,7 +120,7 @@ passport.use(
       try {
         const data = await user.findOne({ _id: token.user });
 
-        if (data.role === 'user') {
+        if (data?.role === 'user') {
           return done(null, token);
         }
 
@@ -160,7 +160,7 @@ passport.use(
       try {
         const data = await user.findOne({ _id: token.user });
 
-        if (data.role === 'admin' || data.role === 'user') {
+        if (data?.role === 'admin' || data?.role === 'user') {
           return done(null, token);
         }
 

@@ -1,9 +1,30 @@
 const express = require('express');
 
-// const { getAllCustomers } = require('../controllers/customers');
+const { admin, adminOrUser } = require('../middlewares/auth');
+
+const {
+  createOrUpdateSeedTypeValidator,
+} = require('../middlewares/validators/seedTypes');
+
+const {
+  getAllSeedTypes,
+  getOneSeedType,
+  createSeedType,
+  updateSeedType,
+  deleteSeedType,
+} = require('../controllers/seedTypes');
 
 const router = express.Router();
 
-// router.get('/', getAllCustomers);
+router
+  .route('/')
+  .get(adminOrUser, getAllSeedTypes)
+  .post(admin, createOrUpdateSeedTypeValidator, createSeedType);
+
+router
+  .route('/:id')
+  .get(adminOrUser, getOneSeedType)
+  .put(admin, createOrUpdateSeedTypeValidator, updateSeedType)
+  .delete(admin, deleteSeedType);
 
 module.exports = router;

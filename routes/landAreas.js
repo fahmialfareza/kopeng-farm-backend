@@ -1,9 +1,30 @@
 const express = require('express');
 
-// const { getAllCustomers } = require('../controllers/customers');
+const { adminOrUser } = require('../middlewares/auth');
+
+const {
+  createOrUpdateLandAreaValidator,
+} = require('../middlewares/validators/landAreas');
+
+const {
+  getAllLandAreas,
+  getOneLandArea,
+  createLandArea,
+  updateLandArea,
+  deleteLandArea,
+} = require('../controllers/landAreas');
 
 const router = express.Router();
 
-// router.get('/', getAllCustomers);
+router
+  .route('/')
+  .get(adminOrUser, getAllLandAreas)
+  .post(adminOrUser, createOrUpdateLandAreaValidator, createLandArea);
+
+router
+  .route('/:id')
+  .get(adminOrUser, getOneLandArea)
+  .put(adminOrUser, createOrUpdateLandAreaValidator, updateLandArea)
+  .delete(adminOrUser, deleteLandArea);
 
 module.exports = router;
