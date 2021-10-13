@@ -5,43 +5,6 @@ const JWTstrategy = require('passport-jwt').Strategy; // to enable jwt in passpo
 const ExtractJWT = require('passport-jwt').ExtractJwt; // to extract or read jwt
 const { user } = require('../../models'); // Import user
 
-// Logic to signup
-// exports.signup = (req, res, next) => {
-//   passport.authenticate('signup', { session: false }, (err, user, info) => {
-//     if (err) {
-//       return next({ message: err.message, statusCode: 401 });
-//     }
-
-//     if (!user) {
-//       return next({ message: info.message, statusCode: 401 });
-//     }
-
-//     req.user = user;
-
-//     next();
-//   })(req, res, next);
-// };
-
-// passport.use(
-//   'signup',
-//   new LocalStrategy(
-//     {
-//       usernameField: 'username',
-//       passwordField: 'password',
-//       passReqToCallback: true,
-//     },
-//     async (req, username, password, done) => {
-//       try {
-//         const data = await user.create(req.body);
-
-//         return done(null, data, { message: 'User can be created' });
-//       } catch (e) {
-//         return done(e, false, { message: "User can't be created" });
-//       }
-//     }
-//   )
-// );
-
 // Logic to signin
 exports.signin = (req, res, next) => {
   passport.authenticate('signin', { session: false }, (err, user, info) => {
