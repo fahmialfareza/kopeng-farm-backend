@@ -14,7 +14,7 @@ const landAreaSchema = new mongoose.Schema(
     },
     coordinate: {
       type: [Number],
-      required: true,
+      required: false,
     },
   },
   // Enables timestamps
