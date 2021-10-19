@@ -1,0 +1,345 @@
+[
+  {
+    "id": 1,
+    "name": "Brokoli",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 8,
+        "end": 9
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Kol Putih",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Sawi Putih",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Jagung Manis",
+    "harvests": [
+      {
+        "name": "Acar",
+        "start": 7,
+        "end": 8
+      },
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Kembang Kol",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Kol Ungu",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Selada Hijau",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 6,
+        "end": 7
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Pak Choy Baby",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 5,
+        "end": 6
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Beet Root",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 7,
+        "end": 8
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Sawi Hijau",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 6,
+        "end": 7
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Pak Choy",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 6,
+        "end": 7
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Terong Ungu",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 11,
+        "end": 12
+      },
+      {
+        "name": "Panen",
+        "start": 12,
+        "end": 13
+      },
+      {
+        "name": "Panen",
+        "start": 13,
+        "end": 14
+      },
+      {
+        "name": "Panen",
+        "start": 14,
+        "end": 15
+      },
+      {
+        "name": "Panen",
+        "start": 15,
+        "end": 16
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Cabe Keriting",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 11,
+        "end": 12
+      },
+      {
+        "name": "Panen",
+        "start": 12,
+        "end": 13
+      },
+      {
+        "name": "Panen",
+        "start": 13,
+        "end": 14
+      },
+      {
+        "name": "Panen",
+        "start": 14,
+        "end": 15
+      },
+      {
+        "name": "Panen",
+        "start": 15,
+        "end": 16
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Cabe Rawit Merah",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 11,
+        "end": 12
+      },
+      {
+        "name": "Panen",
+        "start": 12,
+        "end": 13
+      },
+      {
+        "name": "Panen",
+        "start": 13,
+        "end": 14
+      },
+      {
+        "name": "Panen",
+        "start": 14,
+        "end": 15
+      },
+      {
+        "name": "Panen",
+        "start": 15,
+        "end": 16
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Cabe Merah Besar",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 11,
+        "end": 12
+      },
+      {
+        "name": "Panen",
+        "start": 12,
+        "end": 13
+      },
+      {
+        "name": "Panen",
+        "start": 13,
+        "end": 14
+      },
+      {
+        "name": "Panen",
+        "start": 14,
+        "end": 15
+      },
+      {
+        "name": "Panen",
+        "start": 15,
+        "end": 16
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Cabe Rawit Hijau Caplak",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      },
+      {
+        "name": "Panen",
+        "start": 11,
+        "end": 12
+      },
+      {
+        "name": "Panen",
+        "start": 12,
+        "end": 13
+      },
+      {
+        "name": "Panen",
+        "start": 13,
+        "end": 14
+      },
+      {
+        "name": "Panen",
+        "start": 14,
+        "end": 15
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Cabe Keriting Hijau",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      },
+      {
+        "name": "Panen",
+        "start": 11,
+        "end": 12
+      },
+      {
+        "name": "Panen",
+        "start": 12,
+        "end": 13
+      },
+      {
+        "name": "Panen",
+        "start": 13,
+        "end": 14
+      },
+      {
+        "name": "Panen",
+        "start": 14,
+        "end": 15
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Cabe TW Hijau",
+    "harvests": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      },
+      {
+        "name": "Panen",
+        "start": 11,
+        "end": 12
+      },
+      {
+        "name": "Panen",
+        "start": 12,
+        "end": 13
+      },
+      {
+        "name": "Panen",
+        "start": 13,
+        "end": 14
+      },
+      {
+        "name": "Panen",
+        "start": 14,
+        "end": 15
+      }
+    ]
+  }
+]
