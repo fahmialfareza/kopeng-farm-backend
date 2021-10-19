@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const harvestSchema = new mongoose.Schema({
+  name: String,
   start: {
     type: Date,
   },
