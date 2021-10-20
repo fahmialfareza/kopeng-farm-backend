@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const harvestSchema = new mongoose.Schema({
   name: String,
   start: {
-    type: Date,
+    type: Number,
   },
   end: {
-    type: Date,
+    type: Number,
   },
 });
 
@@ -18,7 +18,7 @@ const vegetableSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    harvests: {
+    harvestsEstimation: {
       type: [harvestSchema],
       required: true,
     },

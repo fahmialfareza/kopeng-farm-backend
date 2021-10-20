@@ -1,5 +1,6 @@
 const validator = require('validator');
 const mongoose = require('mongoose');
+const moment = require('moment');
 const { farmer, landArea, seedType, vegetable, user } = require('../../models');
 
 exports.createOrUpdatePlantValidator = async (req, res, next) => {
@@ -34,10 +35,6 @@ exports.createOrUpdatePlantValidator = async (req, res, next) => {
       errorMessages.push('Production estimation must be number!');
     }
 
-    if (!req.body.harvestEstimation) {
-      errorMessages.push('Harvest Estimation is required!');
-    }
-
     if (req?.body?.production && !validator.isNumeric(req.body.production)) {
       errorMessages.push('Production must be number!');
     }
@@ -50,16 +47,7 @@ exports.createOrUpdatePlantValidator = async (req, res, next) => {
       return next({ messages: errorMessages, statusCode: 400 });
     }
 
-    req.body.harvestEstimation.map((data) => {
-      if (!validator.isDate(data.start)) {
-        errorMessages.push('Harvest Estimation start date must be date!');
-      }
-      if (!validator.isDate(data.end)) {
-        errorMessages.push('Harvest Estimation start date must be date!');
-      }
-    });
-
-    req?.body?.harvest?.map((data) => {
+    req?.body?.harvests?.map((data) => {
       if (!validator.isDate(data.start)) {
         errorMessages.push('Harvest start date must be date!');
       }
@@ -98,6 +86,24 @@ exports.createOrUpdatePlantValidator = async (req, res, next) => {
           errorMessages.push('User not found!');
         }
       }
+    });
+
+    req.body.harvestsEstimation = [];
+
+    data[3].harvestsEstimation.map((data, index) => {
+      let startDate = moment(req.body.plantDate)
+        .add(data.start, 'weeks')
+        .format('YYYY-MM-DD');
+      let endDate = moment(req.body.plantDate)
+        .add(data.end, 'weeks')
+        .subtract(1, 'days')
+        .format('YYYY-MM-DD');
+
+      req.body.harvestsEstimation.push({
+        name: data.name,
+        start: startDate,
+        end: endDate,
+      });
     });
 
     if (errorMessages.length > 0) {

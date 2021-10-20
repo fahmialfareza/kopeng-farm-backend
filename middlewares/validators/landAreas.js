@@ -14,7 +14,11 @@ exports.createOrUpdateLandAreaValidator = async (req, res, next) => {
       errorMessages.push('Area must be number!');
     }
 
-    if (req.body.coordinate && req.body.coordinate.length !== 2) {
+    if (
+      req.body.coordinate &&
+      (!validator.isNumeric(req.body.coordinate.lat) ||
+        !validator.isNumeric(req.body.coordinate.lng))
+    ) {
       errorMessages.push('Coordinate is not valid!');
     }
 

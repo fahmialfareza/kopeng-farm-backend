@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
 
+const coordinateSchema = new mongoose.Schema({
+  lat: {
+    type: Number,
+  },
+  lng: {
+    type: Number,
+  },
+});
+
 const landAreaSchema = new mongoose.Schema(
   // For column
   {
@@ -13,7 +22,7 @@ const landAreaSchema = new mongoose.Schema(
       required: true,
     },
     coordinate: {
-      type: [Number],
+      type: coordinateSchema,
       required: false,
     },
   },

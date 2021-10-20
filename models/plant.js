@@ -41,11 +41,11 @@ const plantSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    harvestEstimation: {
+    harvestsEstimation: {
       type: [harvestSchema],
       required: true,
     },
-    harvest: {
+    harvests: {
       type: [harvestSchema],
       required: false,
     },
