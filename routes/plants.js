@@ -12,9 +12,12 @@ const {
   createPlant,
   updatePlant,
   deletePlant,
+  exportsToXlxs,
 } = require('../controllers/plants');
 
 const router = express.Router();
+
+router.get('/exportstoxlsx', exportsToXlxs);
 
 router
   .route('/')
