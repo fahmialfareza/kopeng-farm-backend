@@ -11,18 +11,20 @@ const {
 
 // Seeder add
 exports.addPlants = async () => {
-  let farmers = await farmer.find();
-  let landAreas = await landArea.find();
-  let seedTypes = await seedType.find();
-  let vegetables = await vegetable.find();
-  let users = await user.find();
+  let data = await Promise.all([
+    farmer.find(),
+    landArea.find(),
+    seedType.find(),
+    vegetable.find(),
+    user.find(),
+  ]);
 
   let harvestsEstimation = [];
 
   for (let i = 0; i < 50; i++) {
     let plantDate = faker.datatype.datetime();
 
-    vegetables[i].harvestsEstimation.map((data, index) => {
+    data[3][i % data[3].length].harvestsEstimation.map((data, index) => {
       let startDate = moment(plantDate)
         .add(data.start, 'weeks')
         .format('YYYY-MM-DD');
@@ -39,15 +41,15 @@ exports.addPlants = async () => {
     });
 
     await plant.create({
-      farmer: farmers[i]._id,
-      landArea: landAreas[i]._id,
-      seedType: seedTypes[i]._id,
-      vegetable: vegetables[i]._id,
+      farmer: data[0][i]._id,
+      landArea: data[1][i]._id,
+      seedType: data[2][i]._id,
+      vegetable: data[3][i % data[3].length]._id,
       plantDate: plantDate,
       population: Math.floor(Math.random() * 10000),
       harvestsEstimation: harvestsEstimation,
       productionEstimation: Math.floor(Math.random() * 10000),
-      user: users[i]._id,
+      user: data[4][i]._id,
     });
 
     harvestsEstimation = [];

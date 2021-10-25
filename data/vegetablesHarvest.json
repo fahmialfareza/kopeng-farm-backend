@@ -1,8 +1,7 @@
 [
   {
-    "id": 1,
     "name": "Brokoli",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 8,
@@ -11,9 +10,8 @@
     ]
   },
   {
-    "id": 2,
     "name": "Kol Putih",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 10,
@@ -22,9 +20,8 @@
     ]
   },
   {
-    "id": 3,
     "name": "Sawi Putih",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 10,
@@ -33,9 +30,8 @@
     ]
   },
   {
-    "id": 4,
     "name": "Jagung Manis",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Acar",
         "start": 7,
@@ -49,9 +45,8 @@
     ]
   },
   {
-    "id": 5,
     "name": "Kembang Kol",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 10,
@@ -60,9 +55,8 @@
     ]
   },
   {
-    "id": 6,
     "name": "Kol Ungu",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 10,
@@ -71,9 +65,8 @@
     ]
   },
   {
-    "id": 7,
     "name": "Selada Hijau",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 6,
@@ -82,9 +75,8 @@
     ]
   },
   {
-    "id": 8,
     "name": "Pak Choy Baby",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 5,
@@ -93,9 +85,8 @@
     ]
   },
   {
-    "id": 9,
     "name": "Beet Root",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 7,
@@ -104,9 +95,8 @@
     ]
   },
   {
-    "id": 10,
     "name": "Sawi Hijau",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 6,
@@ -115,9 +105,8 @@
     ]
   },
   {
-    "id": 11,
     "name": "Pak Choy",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 6,
@@ -126,9 +115,8 @@
     ]
   },
   {
-    "id": 12,
     "name": "Terong Ungu",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 11,
@@ -157,9 +145,8 @@
     ]
   },
   {
-    "id": 13,
     "name": "Cabe Keriting",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 11,
@@ -188,9 +175,8 @@
     ]
   },
   {
-    "id": 14,
     "name": "Cabe Rawit Merah",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 11,
@@ -219,9 +205,8 @@
     ]
   },
   {
-    "id": 15,
     "name": "Cabe Merah Besar",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 11,
@@ -250,9 +235,8 @@
     ]
   },
   {
-    "id": 16,
     "name": "Cabe Rawit Hijau Caplak",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 10,
@@ -281,9 +265,8 @@
     ]
   },
   {
-    "id": 17,
     "name": "Cabe Keriting Hijau",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 10,
@@ -312,9 +295,8 @@
     ]
   },
   {
-    "id": 18,
     "name": "Cabe TW Hijau",
-    "harvests": [
+    "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 10,
