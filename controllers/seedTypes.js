@@ -15,20 +15,6 @@ class SeedTypes {
     }
   }
 
-  async getOneSeedType(req, res, next) {
-    try {
-      const data = await seedType.findOne({ _id: req.params.id });
-
-      if (!data) {
-        return next({ message: 'Seed Type not found', statusCode: 404 });
-      }
-
-      res.status(200).json({ data });
-    } catch (error) {
-      next(error);
-    }
-  }
-
   async createSeedType(req, res, next) {
     try {
       const data = await seedType.create(req.body);

@@ -7,7 +7,7 @@ exports.addLandAreas = async () => {
 
   for (let i = 0; i < 50; i++) {
     await landArea.create({
-      farmer: farmers[i]._id,
+      farmer: farmers[i % farmers.length]._id,
       area: Math.floor(Math.random() * 2000),
       coordinate: {
         lat: faker.address.latitude(),

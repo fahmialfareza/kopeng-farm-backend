@@ -1,13 +1,6 @@
 const faker = require('faker');
 const moment = require('moment');
-const {
-  plant,
-  farmer,
-  landArea,
-  seedType,
-  vegetable,
-  user,
-} = require('../models');
+const { plant, farmer, landArea, seedType, vegetable } = require('../models');
 
 // Seeder add
 exports.addPlants = async () => {
@@ -16,7 +9,6 @@ exports.addPlants = async () => {
     landArea.find(),
     seedType.find(),
     vegetable.find(),
-    user.find(),
   ]);
 
   let harvestsEstimation = [];
@@ -49,7 +41,6 @@ exports.addPlants = async () => {
       population: Math.floor(Math.random() * 10000),
       harvestsEstimation: harvestsEstimation,
       productionEstimation: Math.floor(Math.random() * 10000),
-      user: data[4][i]._id,
     });
 
     harvestsEstimation = [];

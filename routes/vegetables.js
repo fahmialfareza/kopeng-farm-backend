@@ -16,15 +16,6 @@ const {
 
 const router = express.Router();
 
-router
-  .route('/')
-  .get(adminOrUser, getAllVegetables)
-  .post(admin, createOrUpdateVegetableValidator, createVegetable);
-
-router
-  .route('/:id')
-  .get(adminOrUser, getOneVegetable)
-  .put(admin, createOrUpdateVegetableValidator, updateVegetable)
-  .delete(admin, deleteVegetable);
+router.route('/').get(adminOrUser, getAllVegetables);
 
 module.exports = router;

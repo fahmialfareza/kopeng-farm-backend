@@ -1,4 +1,4 @@
-const { plant } = require('../models');
+const { plant, user } = require('../models');
 const moment = require('moment');
 const xlsx = require('json-as-xlsx');
 
@@ -15,6 +15,7 @@ class Plants {
       const fileName = 'Daftar Tanam Calon Mitra_' + Date.now().toString();
 
       let findData = {};
+      let dataPrinted = [];
 
       req.query.createdAtStart &&
         (findData.createdAt = {
@@ -36,15 +37,36 @@ class Plants {
           ...findData.plantDate,
           $lte: new Date(moment(req.query.plantDateEnd).add(1, 'days')),
         });
-      req.query.user && (findData.user = req.query.user);
 
-      let dataPrinted = await plant
-        .find(findData)
-        .populate('farmer')
-        .populate('landArea')
-        .populate('seedType')
-        .populate('vegetable')
-        .populate('user');
+      const userLogin = await user
+        .findOne({ _id: req.user.user })
+        .select('-password');
+
+      if (userLogin.role === 'admin') {
+        dataPrinted = await plant
+          .find(findData)
+          .populate({
+            path: 'farmer',
+            populate: { path: 'user', select: '-password' },
+          })
+          .populate('landArea')
+          .populate('seedType')
+          .populate('vegetable');
+      } else {
+        dataPrinted = await plant
+          .find(findData)
+          .populate({
+            path: 'farmer',
+            populate: {
+              path: 'user',
+              match: { user: userLogin._id },
+              select: '-password',
+            },
+          })
+          .populate('landArea')
+          .populate('seedType')
+          .populate('vegetable');
+      }
 
       if (dataPrinted.length === 0) {
         next({ message: 'Data not found', statusCode: 404 });
@@ -136,7 +158,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: dataPrinted,
@@ -199,7 +221,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[0],
@@ -260,7 +282,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[1],
@@ -321,7 +343,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[2],
@@ -385,7 +407,7 @@ class Plants {
               value: 'productionEstimation',
             },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[3],
@@ -449,7 +471,7 @@ class Plants {
               value: 'productionEstimation',
             },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[4],
@@ -510,7 +532,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[5],
@@ -571,7 +593,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[6],
@@ -635,7 +657,7 @@ class Plants {
               value: 'productionEstimation',
             },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[7],
@@ -696,7 +718,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[8],
@@ -757,7 +779,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[9],
@@ -818,7 +840,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[10],
@@ -879,7 +901,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[11],
@@ -940,7 +962,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[12],
@@ -1001,7 +1023,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[13],
@@ -1062,7 +1084,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[14],
@@ -1123,7 +1145,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[15],
@@ -1184,7 +1206,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[16],
@@ -1245,7 +1267,7 @@ class Plants {
             },
             { label: 'Perkiraan Produksi (kg)', value: 'productionEstimation' },
             { label: 'Produksi (kg)', value: 'production' },
-            { label: 'Kor Lap', value: (row) => row.user.name },
+            { label: 'Kor Lap', value: (row) => row.farmer.user.name },
             { label: 'No HP', value: (row) => row.user.mobileNumber },
           ],
           content: data[17],
@@ -1265,6 +1287,7 @@ class Plants {
   async getAllPlants(req, res, next) {
     try {
       let findData = {};
+      let data = [];
 
       req.query.createdAtStart &&
         (findData.createdAt = {
@@ -1286,38 +1309,43 @@ class Plants {
           ...findData.plantDate,
           $lte: new Date(moment(req.query.plantDateEnd).add(1, 'days')),
         });
-      req.query.user && (findData.user = req.query.user);
 
-      const data = await plant
-        .find(findData)
-        .populate('farmer')
-        .populate('landArea')
-        .populate('seedType')
-        .populate('vegetable')
-        .populate('user');
+      const userLogin = await user
+        .findOne({ _id: req.user.user })
+        .select('-password');
+
+      if (userLogin.role === 'admin') {
+        data = await plant
+          .find(findData)
+          .populate({
+            path: 'farmer',
+            populate: { path: 'user', select: '-password' },
+          })
+          .populate('landArea')
+          .populate('seedType')
+          .populate('vegetable');
+      } else {
+        data = await plant
+          .find(findData)
+          .populate({
+            path: 'farmer',
+            match: { user: userLogin._id },
+            populate: [
+              {
+                path: 'user',
+                select: '-password',
+              },
+            ],
+          })
+          .populate('landArea')
+          .populate('seedType')
+          .populate('vegetable');
+      }
+
+      data = data.filter((item) => item.farmer !== null);
 
       if (data.length === 0) {
         return next({ message: 'Plants not found', statusCode: 404 });
-      }
-
-      res.status(200).json({ data });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async getOnePlant(req, res, next) {
-    try {
-      const data = await plant
-        .findOne({ _id: req.params.id })
-        .populate('farmer')
-        .populate('landArea')
-        .populate('seedType')
-        .populate('vegetable')
-        .populate('user');
-
-      if (!data) {
-        return next({ message: 'Plant not found', statusCode: 404 });
       }
 
       res.status(200).json({ data });
@@ -1330,13 +1358,7 @@ class Plants {
     try {
       let data = await plant.create(req.body);
 
-      data = await plant
-        .findOne({ _id: data._id })
-        .populate('farmer')
-        .populate('landArea')
-        .populate('seedType')
-        .populate('vegetable')
-        .populate('user');
+      data = await plant.findOne({ _id: data._id });
 
       if (!data) {
         return next({ message: 'Plant not found', statusCode: 404 });
@@ -1350,13 +1372,11 @@ class Plants {
 
   async updatePlant(req, res, next) {
     try {
-      const data = await plant
-        .findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
-        .populate('farmer')
-        .populate('landArea')
-        .populate('seedType')
-        .populate('vegetable')
-        .populate('user');
+      const data = await plant.findOneAndUpdate(
+        { _id: req.params.id },
+        req.body,
+        { new: true }
+      );
 
       if (!data) {
         return next({ message: 'Plant not found', statusCode: 404 });

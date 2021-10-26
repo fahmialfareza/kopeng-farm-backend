@@ -9,12 +9,8 @@ async function add() {
   if (process.env.NODE_ENV === 'production') {
     await addVegetables();
   } else {
-    await Promise.all([
-      addFarmers(),
-      addSeedTypes(),
-      addUsers(),
-      addVegetables(),
-    ]);
+    await Promise.all([addSeedTypes(), addUsers(), addVegetables()]);
+    await addFarmers();
     await addLandAreas();
     await addPlants();
   }

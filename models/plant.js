@@ -57,11 +57,6 @@ const plantSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'user',
-    },
   },
   // Enables timestamps
   {

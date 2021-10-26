@@ -17,7 +17,7 @@ const {
 
 const router = express.Router();
 
-router.get('/exportstoxlsx', exportsToXlxs);
+router.get('/exportstoxlsx', adminOrUser, exportsToXlxs);
 
 router
   .route('/')
@@ -26,7 +26,6 @@ router
 
 router
   .route('/:id')
-  .get(adminOrUser, getOnePlant)
   .put(adminOrUser, createOrUpdatePlantValidator, updatePlant)
   .delete(adminOrUser, deletePlant);
 

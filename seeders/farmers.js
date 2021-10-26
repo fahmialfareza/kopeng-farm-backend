@@ -1,8 +1,10 @@
 const faker = require('faker');
-const { farmer } = require('../models');
+const { farmer, user } = require('../models');
 
 // Seeder add
 exports.addFarmers = async () => {
+  const users = await user.find();
+
   for (let i = 0; i < 50; i++) {
     await farmer.create({
       id_number: Math.floor(
@@ -10,6 +12,7 @@ exports.addFarmers = async () => {
       ),
       name: faker.name.findName(),
       address: faker.address.streetAddress(),
+      user: users[i % users.length]._id,
     });
   }
 

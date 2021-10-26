@@ -23,7 +23,6 @@ router
 
 router
   .route('/:id')
-  .get(adminOrUser, getOneFarmer)
   .put(adminOrUser, createOrUpdateFarmerValidator, updateFarmer)
   .delete(adminOrUser, deleteFarmer);
 

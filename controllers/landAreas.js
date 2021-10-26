@@ -1,28 +1,37 @@
-const { landArea } = require('../models');
+const { landArea, user } = require('../models');
 
 class LandAreas {
   async getAllLandAreas(req, res, next) {
     try {
-      const data = await landArea.find().populate('farmer');
+      let data = [];
+
+      const userLogin = await user
+        .findOne({ _id: req.user.user })
+        .select('-password');
+
+      if (userLogin.role === 'admin') {
+        data = await landArea.find().populate({
+          path: 'farmer',
+          populate: {
+            path: 'user',
+            select: '-password',
+          },
+        });
+      } else {
+        data = await landArea.find().populate({
+          path: 'farmer',
+          match: { user: req.user.user },
+          populate: {
+            path: 'user',
+            select: '-password',
+          },
+        });
+      }
+
+      data = data.filter((item) => item.farmer !== null);
 
       if (data.length === 0) {
         return next({ message: 'Land Areas not found', statusCode: 404 });
-      }
-
-      res.status(200).json({ data });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async getOneLandArea(req, res, next) {
-    try {
-      const data = await landArea
-        .findOne({ _id: req.params.id })
-        .populate('farmer');
-
-      if (!data) {
-        return next({ message: 'Land Area not found', statusCode: 404 });
       }
 
       res.status(200).json({ data });
@@ -35,7 +44,7 @@ class LandAreas {
     try {
       let data = await landArea.create(req.body);
 
-      data = await landArea.findOne({ _id: data._id }).populate('farmer');
+      data = await landArea.findOne({ _id: data._id });
 
       res.status(201).json({ data });
     } catch (error) {
@@ -45,9 +54,11 @@ class LandAreas {
 
   async updateLandArea(req, res, next) {
     try {
-      const data = await landArea
-        .findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
-        .populate('farmer');
+      const data = await landArea.findOneAndUpdate(
+        { _id: req.params.id },
+        req.body,
+        { new: true }
+      );
 
       if (!data) {
         return next({ message: 'Land Area not found', statusCode: 404 });

@@ -1,7 +1,7 @@
 const validator = require('validator');
 const mongoose = require('mongoose');
 const moment = require('moment');
-const { farmer, landArea, seedType, vegetable, user } = require('../../models');
+const { farmer, landArea, seedType, vegetable } = require('../../models');
 
 exports.createOrUpdatePlantValidator = async (req, res, next) => {
   try {
@@ -39,10 +39,6 @@ exports.createOrUpdatePlantValidator = async (req, res, next) => {
       errorMessages.push('Production must be number!');
     }
 
-    if (!mongoose.Types.ObjectId.isValid(req.body.user)) {
-      errorMessages.push('ID user is not valid!');
-    }
-
     if (errorMessages.length > 0) {
       return next({ messages: errorMessages, statusCode: 400 });
     }
@@ -65,7 +61,6 @@ exports.createOrUpdatePlantValidator = async (req, res, next) => {
       landArea.findOne({ _id: req.body.landArea }),
       seedType.findOne({ _id: req.body.seedType }),
       vegetable.findOne({ _id: req.body.vegetable }),
-      user.findOne({ _id: req.body.user }),
     ]);
 
     data.map((dat, index) => {
@@ -81,9 +76,6 @@ exports.createOrUpdatePlantValidator = async (req, res, next) => {
         }
         if (index === 3) {
           errorMessages.push('Vegetable not found!');
-        }
-        if (index === 4) {
-          errorMessages.push('User not found!');
         }
       }
     });

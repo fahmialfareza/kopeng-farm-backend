@@ -23,7 +23,6 @@ router
 
 router
   .route('/:id')
-  .get(adminOrUser, getOneLandArea)
   .put(adminOrUser, createOrUpdateLandAreaValidator, updateLandArea)
   .delete(adminOrUser, deleteLandArea);
 

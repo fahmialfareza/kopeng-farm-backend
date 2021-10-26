@@ -23,7 +23,6 @@ router
 
 router
   .route('/:id')
-  .get(adminOrUser, getOneSeedType)
   .put(admin, createOrUpdateSeedTypeValidator, updateSeedType)
   .delete(admin, deleteSeedType);
 
