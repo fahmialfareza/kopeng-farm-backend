@@ -1347,6 +1347,12 @@ class Plants {
       data = data.map((item) => {
         return {
           ...item._doc,
+          plantDate: `${moment(item.plantDate)
+            .locale('id')
+            .format('dddd, Do MMMM YYYY')}`,
+          createdAt: `${moment(item.createdAt)
+            .locale('id')
+            .format('dddd, Do MMMM YYYY')}`,
           masapanen1: item.harvestsEstimation[0]
             ? `${item.harvestsEstimation[0].name} (${moment(
                 item.harvestsEstimation[0].start
