@@ -1344,6 +1344,57 @@ class Plants {
 
       data = data.filter((item) => item.farmer !== null);
 
+      data = data.map((item) => {
+        return {
+          ...item._doc,
+          masapanen1: item.harvestsEstimation[0]
+            ? `${moment(item.harvestsEstimation[0].start)
+                .locale('id')
+                .format('Do MMMM YYYY')} - ${moment(
+                item.harvestsEstimation[0].end
+              )
+                .locale('id')
+                .format('Do MMMM YYYY')}`
+            : '',
+          masapanen2: item.harvestsEstimation[1]
+            ? `${moment(item.harvestsEstimation[1].start)
+                .locale('id')
+                .format('Do MMMM YYYY')} - ${moment(
+                item.harvestsEstimation[1].end
+              )
+                .locale('id')
+                .format('Do MMMM YYYY')}`
+            : '',
+          masapanen3: item.harvestsEstimation[2]
+            ? `${moment(item.harvestsEstimation[2].start)
+                .locale('id')
+                .format('Do MMMM YYYY')} - ${moment(
+                item.harvestsEstimation[2].end
+              )
+                .locale('id')
+                .format('Do MMMM YYYY')}`
+            : '',
+          masapanen4: item.harvestsEstimation[3]
+            ? `${moment(item.harvestsEstimation[3].start)
+                .locale('id')
+                .format('Do MMMM YYYY')} - ${moment(
+                item.harvestsEstimation[3].end
+              )
+                .locale('id')
+                .format('Do MMMM YYYY')}`
+            : '',
+          masapanen5: item.harvestsEstimation[4]
+            ? `${moment(item.harvestsEstimation[4].start)
+                .locale('id')
+                .format('Do MMMM YYYY')} - ${moment(
+                item.harvestsEstimation[4].end
+              )
+                .locale('id')
+                .format('Do MMMM YYYY')}`
+            : '',
+        };
+      });
+
       if (data.length === 0) {
         return next({ message: 'Plants not found', statusCode: 404 });
       }
