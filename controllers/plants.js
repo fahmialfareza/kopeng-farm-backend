@@ -1354,6 +1354,28 @@ class Plants {
     }
   }
 
+  async getDetailPlant(req, res, next) {
+    try {
+      const data = await plant
+        .find({ _id: req.params.id })
+        .populate({
+          path: 'farmer',
+          populate: { path: 'user', select: '-password' },
+        })
+        .populate('landArea')
+        .populate('seedType')
+        .populate('vegetable');
+
+      if (!data) {
+        return next({ message: 'Plant not found', statusCode: 404 });
+      }
+
+      res.status(200).json({ data });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async createPlant(req, res, next) {
     try {
       let data = await plant.create(req.body);

@@ -37,6 +37,26 @@ class Farmers {
     }
   }
 
+  async getDetailFarmer(req, res, next) {
+    try {
+      const data = await farmer
+        .findOne({ _id: req.params.id })
+        .populate({
+          path: 'user',
+          select: '-password',
+        })
+        .populate('landAreas');
+
+      if (!data) {
+        return next({ message: 'Farmer not found', statusCode: 404 });
+      }
+
+      res.status(200).json({ data });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async createFarmer(req, res, next) {
     try {
       const data = await farmer.create(req.body);

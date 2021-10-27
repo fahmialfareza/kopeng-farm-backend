@@ -40,6 +40,26 @@ class LandAreas {
     }
   }
 
+  async getDetailLandArea(req, res, next) {
+    try {
+      const data = await landArea.find({ _id: req.params.id }).populate({
+        path: 'farmer',
+        populate: {
+          path: 'user',
+          select: '-password',
+        },
+      });
+
+      if (!data) {
+        return next({ message: 'Land Area not found', statusCode: 404 });
+      }
+
+      res.status(200).json({ data });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async createLandArea(req, res, next) {
     try {
       let data = await landArea.create(req.body);

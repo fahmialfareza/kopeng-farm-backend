@@ -17,6 +17,7 @@ const {
   getAllUsers,
   updateUser,
   deleteUser,
+  getDetailUser,
 } = require('../controllers/auth');
 
 // Make router
@@ -27,6 +28,7 @@ router.post('/createUser', admin, createOrUpdateUserValidator, createUser);
 router.post('/signin', signInValidator, signin, getToken);
 router.get('/me', adminOrUser, getMe);
 router.get('/', admin, getAllUsers);
+router.get('/:id', admin, getDetailUser);
 router.put('/:id', admin, createOrUpdateUserValidator, updateUser);
 router.delete('/:id', admin, deleteUser);
 

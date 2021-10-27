@@ -8,7 +8,7 @@ const {
 
 const {
   getAllFarmers,
-  getOneFarmer,
+  getDetailFarmer,
   createFarmer,
   updateFarmer,
   deleteFarmer,
@@ -23,6 +23,7 @@ router
 
 router
   .route('/:id')
+  .get(adminOrUser, getDetailFarmer)
   .put(adminOrUser, createOrUpdateFarmerValidator, updateFarmer)
   .delete(adminOrUser, deleteFarmer);
 

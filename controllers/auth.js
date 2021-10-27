@@ -16,6 +16,20 @@ class Auth {
     }
   }
 
+  async getDetailUser(req, res, next) {
+    try {
+      const data = await user.findOne({ _id: req.params.id });
+
+      if (!data) {
+        return next({ message: 'User not found', statusCode: 404 });
+      }
+
+      res.status(200).json({ data });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async createUser(req, res, next) {
     try {
       const newUser = await user.create(req.body);

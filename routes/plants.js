@@ -8,7 +8,7 @@ const {
 
 const {
   getAllPlants,
-  getOnePlant,
+  getDetailPlant,
   createPlant,
   updatePlant,
   deletePlant,
@@ -26,6 +26,7 @@ router
 
 router
   .route('/:id')
+  .get(adminOrUser, getDetailPlant)
   .put(adminOrUser, createOrUpdatePlantValidator, updatePlant)
   .delete(adminOrUser, deletePlant);
 

@@ -8,10 +8,10 @@ const {
 
 const {
   getAllLandAreas,
-  getOneLandArea,
   createLandArea,
   updateLandArea,
   deleteLandArea,
+  getDetailLandArea,
 } = require('../controllers/landAreas');
 
 const router = express.Router();
@@ -23,6 +23,7 @@ router
 
 router
   .route('/:id')
+  .get(adminOrUser, getDetailLandArea)
   .put(adminOrUser, createOrUpdateLandAreaValidator, updateLandArea)
   .delete(adminOrUser, deleteLandArea);
 
