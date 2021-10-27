@@ -5,7 +5,7 @@ function validateUserName(username) {
   return usernameRegex.test(username);
 }
 
-exports.createUserValidator = async (req, res, next) => {
+exports.createOrUpdateUserValidator = async (req, res, next) => {
   try {
     const errorMessages = [];
 

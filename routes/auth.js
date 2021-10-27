@@ -5,20 +5,30 @@ const { signin, admin, adminOrUser } = require('../middlewares/auth');
 
 // Import validator
 const {
-  createUserValidator,
+  createOrUpdateUserValidator,
   signInValidator,
 } = require('../middlewares/validators/auth');
 
 // Import controller
-const { createUser, getToken, getMe } = require('../controllers/auth');
+const {
+  createUser,
+  getToken,
+  getMe,
+  getAllUsers,
+  updateUser,
+  deleteUser,
+} = require('../controllers/auth');
 
 // Make router
 const router = express.Router();
 
 // Make routes
-router.post('/createUser', admin, createUserValidator, createUser);
+router.post('/createUser', admin, createOrUpdateUserValidator, createUser);
 router.post('/signin', signInValidator, signin, getToken);
 router.get('/me', adminOrUser, getMe);
+router.get('/', admin, getAllUsers);
+router.put('/:id', admin, createOrUpdateUserValidator, updateUser);
+router.delete('/:id', admin, deleteUser);
 
 // Exports
 module.exports = router;
