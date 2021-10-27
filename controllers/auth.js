@@ -4,7 +4,7 @@ const { user } = require('../models');
 class Auth {
   async getAllUsers(req, res, next) {
     try {
-      const data = await user.find();
+      const data = await user.find({ role: 'user' });
 
       if (data.length === 0) {
         return next({ message: 'Users not found', statusCode: 404 });
