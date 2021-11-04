@@ -18,6 +18,10 @@ const vegetableSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    price: {
+      type: Number,
+      required: true,
+    },
     harvestsEstimation: {
       type: [harvestSchema],
       required: true,

@@ -8,14 +8,14 @@ const {
 
 const {
   getAllVegetables,
-  getOneVegetable,
-  createVegetable,
   updateVegetable,
-  deleteVegetable,
 } = require('../controllers/vegetables');
 
 const router = express.Router();
 
 router.route('/').get(adminOrUser, getAllVegetables);
+router
+  .route('/:id')
+  .put(admin, createOrUpdateVegetableValidator, updateVegetable);
 
 module.exports = router;

@@ -3,7 +3,7 @@ const { seedType } = require('../models');
 
 // Seeder add
 exports.addSeedTypes = async () => {
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 10; i++) {
     await seedType.create({ name: faker.name.findName() });
   }
 

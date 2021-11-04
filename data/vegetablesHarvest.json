@@ -1,6 +1,40 @@
 [
   {
+    "name": "Bawang Daun",
+    "price": 4000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      }
+    ]
+  },
+  {
+    "name": "Bawang Merah",
+    "price": 16000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      }
+    ]
+  },
+  {
+    "name": "Beet Root",
+    "price": 5500,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 7,
+        "end": 8
+      }
+    ]
+  },
+  {
     "name": "Brokoli",
+    "price": 9000,
     "harvestsEstimation": [
       {
         "name": "Panen",
@@ -10,7 +44,8 @@
     ]
   },
   {
-    "name": "Kol Putih",
+    "name": "Buncis",
+    "price": 4000,
     "harvestsEstimation": [
       {
         "name": "Panen",
@@ -20,17 +55,85 @@
     ]
   },
   {
-    "name": "Sawi Putih",
+    "name": "Buncis Kenya",
+    "price": 10000,
     "harvestsEstimation": [
       {
         "name": "Panen",
         "start": 10,
         "end": 11
+      }
+    ]
+  },
+  {
+    "name": "Cabe Keriting Hijau",
+    "price": 9000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 12,
+        "end": 13
+      }
+    ]
+  },
+  {
+    "name": "Cabe Keriting Merah",
+    "price": 13000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 14,
+        "end": 15
+      }
+    ]
+  },
+  {
+    "name": "Cabe Merah Besar",
+    "price": 14500,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 14,
+        "end": 15
+      }
+    ]
+  },
+  {
+    "name": "Cabe Rawit Hijau Caplak",
+    "price": 10000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 14,
+        "end": 15
+      }
+    ]
+  },
+  {
+    "name": "Cabe Rawit Merah",
+    "price": 15000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 17,
+        "end": 18
+      }
+    ]
+  },
+  {
+    "name": "Cabe TW Hijau",
+    "price": 15000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 17,
+        "end": 18
       }
     ]
   },
   {
     "name": "Jagung Manis",
+    "price": 4000,
     "harvestsEstimation": [
       {
         "name": "Acar",
@@ -46,6 +149,18 @@
   },
   {
     "name": "Kembang Kol",
+    "price": 7000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      }
+    ]
+  },
+  {
+    "name": "Kol Putih",
+    "price": 2500,
     "harvestsEstimation": [
       {
         "name": "Panen",
@@ -56,6 +171,7 @@
   },
   {
     "name": "Kol Ungu",
+    "price": 7000,
     "harvestsEstimation": [
       {
         "name": "Panen",
@@ -65,7 +181,52 @@
     ]
   },
   {
-    "name": "Selada Hijau",
+    "name": "Labu Siam",
+    "price": 2000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 11,
+        "end": 12
+      }
+    ]
+  },
+  {
+    "name": "Labu Siam Baby",
+    "price": 3500,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 11,
+        "end": 12
+      }
+    ]
+  },
+  {
+    "name": "Oyong",
+    "price": 3500,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 8,
+        "end": 9
+      }
+    ]
+  },
+  {
+    "name": "Pare",
+    "price": 3500,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 8,
+        "end": 9
+      }
+    ]
+  },
+  {
+    "name": "Pokchoy",
+    "price": 2000,
     "harvestsEstimation": [
       {
         "name": "Panen",
@@ -75,7 +236,8 @@
     ]
   },
   {
-    "name": "Pak Choy Baby",
+    "name": "Pokchoy Baby",
+    "price": 4000,
     "harvestsEstimation": [
       {
         "name": "Panen",
@@ -85,17 +247,8 @@
     ]
   },
   {
-    "name": "Beet Root",
-    "harvestsEstimation": [
-      {
-        "name": "Panen",
-        "start": 7,
-        "end": 8
-      }
-    ]
-  },
-  {
     "name": "Sawi Hijau",
+    "price": 3000,
     "harvestsEstimation": [
       {
         "name": "Panen",
@@ -105,7 +258,41 @@
     ]
   },
   {
-    "name": "Pak Choy",
+    "name": "Sawi Putih",
+    "price": 2000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      }
+    ]
+  },
+  {
+    "name": "Selada Keriting",
+    "price": 2500,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 6,
+        "end": 7
+      }
+    ]
+  },
+  {
+    "name": "Seledri Lokal",
+    "price": 4000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 6,
+        "end": 7
+      }
+    ]
+  },
+  {
+    "name": "Seledri Stick",
+    "price": 115000,
     "harvestsEstimation": [
       {
         "name": "Panen",
@@ -116,6 +303,7 @@
   },
   {
     "name": "Terong Ungu",
+    "price": 3000,
     "harvestsEstimation": [
       {
         "name": "Panen",
@@ -145,182 +333,35 @@
     ]
   },
   {
-    "name": "Cabe Keriting",
+    "name": "Timun Kyuri",
+    "price": 3500,
     "harvestsEstimation": [
       {
         "name": "Panen",
-        "start": 11,
-        "end": 12
-      },
-      {
-        "name": "Panen",
-        "start": 12,
-        "end": 13
-      },
-      {
-        "name": "Panen",
-        "start": 13,
-        "end": 14
-      },
-      {
-        "name": "Panen",
-        "start": 14,
-        "end": 15
-      },
-      {
-        "name": "Panen",
-        "start": 15,
-        "end": 16
+        "start": 5,
+        "end": 6
       }
     ]
   },
   {
-    "name": "Cabe Rawit Merah",
+    "name": "Timun Lokal",
+    "price": 3000,
     "harvestsEstimation": [
       {
         "name": "Panen",
-        "start": 11,
-        "end": 12
-      },
-      {
-        "name": "Panen",
-        "start": 12,
-        "end": 13
-      },
-      {
-        "name": "Panen",
-        "start": 13,
-        "end": 14
-      },
-      {
-        "name": "Panen",
-        "start": 14,
-        "end": 15
-      },
-      {
-        "name": "Panen",
-        "start": 15,
-        "end": 16
+        "start": 5,
+        "end": 6
       }
     ]
   },
   {
-    "name": "Cabe Merah Besar",
+    "name": "Tomat",
+    "price": 4000,
     "harvestsEstimation": [
-      {
-        "name": "Panen",
-        "start": 11,
-        "end": 12
-      },
       {
         "name": "Panen",
         "start": 12,
         "end": 13
-      },
-      {
-        "name": "Panen",
-        "start": 13,
-        "end": 14
-      },
-      {
-        "name": "Panen",
-        "start": 14,
-        "end": 15
-      },
-      {
-        "name": "Panen",
-        "start": 15,
-        "end": 16
-      }
-    ]
-  },
-  {
-    "name": "Cabe Rawit Hijau Caplak",
-    "harvestsEstimation": [
-      {
-        "name": "Panen",
-        "start": 10,
-        "end": 11
-      },
-      {
-        "name": "Panen",
-        "start": 11,
-        "end": 12
-      },
-      {
-        "name": "Panen",
-        "start": 12,
-        "end": 13
-      },
-      {
-        "name": "Panen",
-        "start": 13,
-        "end": 14
-      },
-      {
-        "name": "Panen",
-        "start": 14,
-        "end": 15
-      }
-    ]
-  },
-  {
-    "name": "Cabe Keriting Hijau",
-    "harvestsEstimation": [
-      {
-        "name": "Panen",
-        "start": 10,
-        "end": 11
-      },
-      {
-        "name": "Panen",
-        "start": 11,
-        "end": 12
-      },
-      {
-        "name": "Panen",
-        "start": 12,
-        "end": 13
-      },
-      {
-        "name": "Panen",
-        "start": 13,
-        "end": 14
-      },
-      {
-        "name": "Panen",
-        "start": 14,
-        "end": 15
-      }
-    ]
-  },
-  {
-    "name": "Cabe TW Hijau",
-    "harvestsEstimation": [
-      {
-        "name": "Panen",
-        "start": 10,
-        "end": 11
-      },
-      {
-        "name": "Panen",
-        "start": 11,
-        "end": 12
-      },
-      {
-        "name": "Panen",
-        "start": 12,
-        "end": 13
-      },
-      {
-        "name": "Panen",
-        "start": 13,
-        "end": 14
-      },
-      {
-        "name": "Panen",
-        "start": 14,
-        "end": 15
       }
     ]
   }

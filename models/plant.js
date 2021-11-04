@@ -57,6 +57,10 @@ const plantSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
+    price: {
+      type: Number,
+      required: true,
+    },
   },
   // Enables timestamps
   {

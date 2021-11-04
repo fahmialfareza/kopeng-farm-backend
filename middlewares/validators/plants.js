@@ -102,6 +102,8 @@ exports.createOrUpdatePlantValidator = async (req, res, next) => {
       return next({ messages: errorMessages, statusCode: 400 });
     }
 
+    req.body.price = eval(data[3].price * req.body.productionEstimation);
+
     next();
   } catch (error) {
     next(error);

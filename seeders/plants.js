@@ -15,6 +15,7 @@ exports.addPlants = async () => {
 
   for (let i = 0; i < 50; i++) {
     let plantDate = faker.datatype.datetime();
+    let productionEstimation = Math.floor(Math.random() * 10000);
 
     data[3][i % data[3].length].harvestsEstimation.map((data, index) => {
       let startDate = moment(plantDate)
@@ -35,12 +36,13 @@ exports.addPlants = async () => {
     await plant.create({
       farmer: data[0][i]._id,
       landArea: data[1][i]._id,
-      seedType: data[2][i]._id,
+      seedType: data[2][i % data[2].length]._id,
       vegetable: data[3][i % data[3].length]._id,
       plantDate: plantDate,
       population: Math.floor(Math.random() * 10000),
       harvestsEstimation: harvestsEstimation,
-      productionEstimation: Math.floor(Math.random() * 10000),
+      productionEstimation: productionEstimation,
+      price: eval(data[3][i % data[3].length].price * productionEstimation),
     });
 
     harvestsEstimation = [];
