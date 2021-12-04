@@ -8,7 +8,8 @@
         "start": 10,
         "end": 11
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Bawang Merah",
@@ -19,7 +20,8 @@
         "start": 10,
         "end": 11
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Beet Root",
@@ -30,7 +32,8 @@
         "start": 7,
         "end": 8
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Brokoli",
@@ -41,7 +44,8 @@
         "start": 8,
         "end": 9
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Buncis",
@@ -52,7 +56,8 @@
         "start": 10,
         "end": 11
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Buncis Kenya",
@@ -63,7 +68,8 @@
         "start": 10,
         "end": 11
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Cabe Keriting Hijau",
@@ -74,7 +80,8 @@
         "start": 12,
         "end": 13
       }
-    ]
+    ],
+    "commission": 2
   },
   {
     "name": "Cabe Keriting Merah",
@@ -85,7 +92,8 @@
         "start": 14,
         "end": 15
       }
-    ]
+    ],
+    "commission": 2
   },
   {
     "name": "Cabe Merah Besar",
@@ -96,7 +104,8 @@
         "start": 14,
         "end": 15
       }
-    ]
+    ],
+    "commission": 2
   },
   {
     "name": "Cabe Rawit Hijau Caplak",
@@ -107,7 +116,8 @@
         "start": 14,
         "end": 15
       }
-    ]
+    ],
+    "commission": 2
   },
   {
     "name": "Cabe Rawit Merah",
@@ -118,7 +128,8 @@
         "start": 17,
         "end": 18
       }
-    ]
+    ],
+    "commission": 2
   },
   {
     "name": "Cabe TW Hijau",
@@ -129,7 +140,8 @@
         "start": 17,
         "end": 18
       }
-    ]
+    ],
+    "commission": 2
   },
   {
     "name": "Jagung Manis",
@@ -145,7 +157,8 @@
         "start": 10,
         "end": 11
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Kembang Kol",
@@ -156,7 +169,8 @@
         "start": 10,
         "end": 11
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Kol Putih",
@@ -167,7 +181,8 @@
         "start": 10,
         "end": 11
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Kol Ungu",
@@ -178,7 +193,8 @@
         "start": 10,
         "end": 11
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Labu Siam",
@@ -189,7 +205,8 @@
         "start": 11,
         "end": 12
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Labu Siam Baby",
@@ -200,7 +217,8 @@
         "start": 11,
         "end": 12
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Oyong",
@@ -211,7 +229,8 @@
         "start": 8,
         "end": 9
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Pare",
@@ -222,7 +241,8 @@
         "start": 8,
         "end": 9
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Pokchoy",
@@ -233,7 +253,8 @@
         "start": 6,
         "end": 7
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Pokchoy Baby",
@@ -244,7 +265,8 @@
         "start": 5,
         "end": 6
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Sawi Hijau",
@@ -255,7 +277,8 @@
         "start": 6,
         "end": 7
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Sawi Putih",
@@ -266,7 +289,8 @@
         "start": 10,
         "end": 11
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Selada Keriting",
@@ -277,7 +301,8 @@
         "start": 6,
         "end": 7
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Seledri Lokal",
@@ -288,7 +313,8 @@
         "start": 6,
         "end": 7
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Seledri Stick",
@@ -299,7 +325,8 @@
         "start": 6,
         "end": 7
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Terong Ungu",
@@ -330,7 +357,8 @@
         "start": 15,
         "end": 16
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Timun Kyuri",
@@ -341,7 +369,8 @@
         "start": 5,
         "end": 6
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Timun Lokal",
@@ -352,7 +381,8 @@
         "start": 5,
         "end": 6
       }
-    ]
+    ],
+    "commission": 6
   },
   {
     "name": "Tomat",
@@ -363,6 +393,7 @@
         "start": 12,
         "end": 13
       }
-    ]
+    ],
+    "commission": 6
   }
 ]

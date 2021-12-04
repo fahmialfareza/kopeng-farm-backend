@@ -5,9 +5,9 @@ const { user } = require('../models');
 exports.addUsers = async () => {
   await Promise.all([
     user.create({
-      name: 'Fahmi Alfareza',
-      username: 'fahmialfareza',
-      password: 'Aneh1234',
+      name: 'Kopeng Farm',
+      username: 'kopengfarm',
+      password: 'Kopengfarm1234',
       mobileNumber: '081234567890',
       role: 'admin',
     }),

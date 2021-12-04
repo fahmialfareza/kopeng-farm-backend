@@ -1,11 +1,10 @@
 const faker = require('faker');
 const { seedType } = require('../models');
+const seedTypeData = require('../data/seedTypes.json');
 
 // Seeder add
 exports.addSeedTypes = async () => {
-  for (let i = 0; i < 10; i++) {
-    await seedType.create({ name: faker.name.findName() });
-  }
+  await seedType.insertMany(seedTypeData);
 
   console.log('Seed Types have been added');
 };

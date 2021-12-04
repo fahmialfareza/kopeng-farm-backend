@@ -22,6 +22,10 @@ const vegetableSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    commission: {
+      type: Number,
+      required: true,
+    },
     harvestsEstimation: {
       type: [harvestSchema],
       required: true,

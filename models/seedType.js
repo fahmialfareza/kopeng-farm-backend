@@ -8,6 +8,15 @@ const seedTypeSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    price: {
+      type: Number,
+      required: true,
+    },
+    vegetable: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'vegetable',
+    },
   },
   // Enables timestamps
   {

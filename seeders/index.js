@@ -1,26 +1,29 @@
 const { addFarmers, deleteFarmers } = require('./farmers');
+const { addHarvests, deleteHarvests } = require('./harvests');
 const { addLandAreas, deleteLandAreas } = require('./landAreas');
-const { addPlants, deletePlants } = require('./plants');
+const { addMerchants, deleteMerchants } = require('./merchants');
 const { addSeedTypes, deleteSeedTypes } = require('./seedTypes');
 const { addUsers, deleteUsers } = require('./users');
 const { addVegetables, deleteVegetables } = require('./vegetables');
 
 async function add() {
   if (process.env.NODE_ENV === 'production') {
-    await addVegetables();
+    await Promise.all([addVegetables(), addSeedTypes()]);
   } else {
-    await Promise.all([addSeedTypes(), addUsers(), addVegetables()]);
+    await Promise.all([addUsers(), addVegetables(), addSeedTypes()]);
     await addFarmers();
     await addLandAreas();
-    await addPlants();
+    await addMerchants();
+    await addHarvests();
   }
 }
 
 async function remove() {
   await Promise.all([
     deleteFarmers(),
+    deleteHarvests(),
     deleteLandAreas(),
-    deletePlants(),
+    deleteMerchants(),
     deleteSeedTypes(),
     deleteUsers(),
     deleteVegetables(),

@@ -10,7 +10,7 @@ const harvestSchema = new mongoose.Schema({
   },
 });
 
-const plantSchema = new mongoose.Schema(
+const merchantSchema = new mongoose.Schema(
   // For column
   {
     farmer: {
@@ -28,11 +28,6 @@ const plantSchema = new mongoose.Schema(
       required: true,
       ref: 'seedType',
     },
-    vegetable: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'vegetable',
-    },
     plantDate: {
       type: Date,
       required: true,
@@ -45,19 +40,11 @@ const plantSchema = new mongoose.Schema(
       type: [harvestSchema],
       required: true,
     },
-    harvests: {
-      type: [harvestSchema],
-      required: false,
-    },
     productionEstimation: {
       type: Number,
       required: true,
     },
-    production: {
-      type: Number,
-      required: false,
-    },
-    price: {
+    priceEstimation: {
       type: Number,
       required: true,
     },
@@ -71,4 +58,4 @@ const plantSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('plant', plantSchema); // Export
+module.exports = mongoose.model('merchant', merchantSchema); // Export

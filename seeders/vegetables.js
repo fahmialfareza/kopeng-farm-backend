@@ -1,6 +1,6 @@
 const faker = require('faker');
 const { vegetable } = require('../models');
-const vegetablesData = require('../data/vegetablesHarvest.json');
+const vegetablesData = require('../data/vegetables.json');
 
 // Seeder add
 exports.addVegetables = async () => {

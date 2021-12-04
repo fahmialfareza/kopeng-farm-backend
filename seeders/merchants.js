@@ -1,14 +1,13 @@
 const faker = require('faker');
 const moment = require('moment');
-const { plant, farmer, landArea, seedType, vegetable } = require('../models');
+const { merchant, farmer, landArea, seedType } = require('../models');
 
 // Seeder add
-exports.addPlants = async () => {
+exports.addMerchants = async () => {
   let data = await Promise.all([
     farmer.find(),
     landArea.find(),
     seedType.find(),
-    vegetable.find(),
   ]);
 
   let harvestsEstimation = [];
@@ -33,27 +32,28 @@ exports.addPlants = async () => {
       });
     });
 
-    await plant.create({
+    await merchant.create({
       farmer: data[0][i]._id,
       landArea: data[1][i]._id,
       seedType: data[2][i % data[2].length]._id,
-      vegetable: data[3][i % data[3].length]._id,
       plantDate: plantDate,
       population: Math.floor(Math.random() * 10000),
       harvestsEstimation: harvestsEstimation,
       productionEstimation: productionEstimation,
-      price: eval(data[3][i % data[3].length].price * productionEstimation),
+      priceEstimation: eval(
+        data[3][i % data[3].length].price * productionEstimation
+      ),
     });
 
     harvestsEstimation = [];
   }
 
-  console.log('Plants have been added');
+  console.log('Merchants have been added');
 };
 
 // Seeder undo
-exports.deletePlants = async () => {
-  await plant.remove();
+exports.deleteMerchants = async () => {
+  await merchant.remove();
 
-  console.log('Plants have beend deleted');
+  console.log('Merchants have beend deleted');
 };

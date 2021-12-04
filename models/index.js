@@ -10,8 +10,9 @@ mongoose
   .catch((err) => console.error(err));
 
 exports.farmer = require('./farmer');
+exports.harvest = require('./harvest');
 exports.landArea = require('./landArea');
-exports.plant = require('./plant');
+exports.merchant = require('./merchant');
 exports.seedType = require('./seedType');
 exports.user = require('./user');
 exports.vegetable = require('./vegetable');
