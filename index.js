@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
 /* Import routes */
 const farmers = require('./routes/farmers');
 const landAreas = require('./routes/landAreas');
-const plants = require('./routes/plants');
+// const plants = require('./routes/plants');
 const seedTypes = require('./routes/seedTypes');
 const auth = require('./routes/auth');
 const vegetables = require('./routes/vegetables');
