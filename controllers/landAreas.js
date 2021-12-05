@@ -29,9 +29,10 @@ class LandAreas {
       }
 
       data = data.filter((item) => item.farmer !== null);
+      data = data.filter((item) => item.farmer.user !== null);
 
       if (data.length === 0) {
-        return next({ message: 'Land Areas not found', statusCode: 404 });
+        return next({ message: 'Lahan tidak ditemukan!', statusCode: 404 });
       }
 
       res.status(200).json({ data });
@@ -42,7 +43,7 @@ class LandAreas {
 
   async getDetailLandArea(req, res, next) {
     try {
-      const data = await landArea.find({ _id: req.params.id }).populate({
+      const data = await landArea.findOne({ _id: req.params.id }).populate({
         path: 'farmer',
         populate: {
           path: 'user',
@@ -50,8 +51,8 @@ class LandAreas {
         },
       });
 
-      if (!data) {
-        return next({ message: 'Land Area not found', statusCode: 404 });
+      if (!data || !data?.farmer || !data.farmer.user) {
+        return next({ message: 'Lahan tidak ditemukan!', statusCode: 404 });
       }
 
       res.status(200).json({ data });
@@ -81,7 +82,7 @@ class LandAreas {
       );
 
       if (!data) {
-        return next({ message: 'Land Area not found', statusCode: 404 });
+        return next({ message: 'Lahan tidak ditemukan!', statusCode: 404 });
       }
 
       res.status(201).json({ data });
@@ -95,10 +96,10 @@ class LandAreas {
       const data = await landArea.deleteOne({ _id: req.params.id });
 
       if (data.deletedCount === 0) {
-        return next({ message: 'Land Area not found', statusCode: 404 });
+        return next({ message: 'Lahan tidak ditemukan!', statusCode: 404 });
       }
 
-      res.status(200).json({ message: 'Land Area has been deleted' });
+      res.status(200).json({ message: 'Lahan berhasil dihapus!' });
     } catch (error) {
       next(error);
     }

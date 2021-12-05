@@ -13,6 +13,18 @@ const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
 
+/* Import routes */
+const farmers = require('./routes/farmers');
+const harvests = require('./routes/harvests');
+const landAreas = require('./routes/landAreas');
+const merchants = require('./routes/merchants');
+const seedTypes = require('./routes/seedTypes');
+const auth = require('./routes/auth');
+const vegetables = require('./routes/vegetables');
+
+/* Import errorHandler */
+const errorHandler = require('./middlewares/errorHandler');
+
 const app = express(); // Make express app
 
 // CORS
@@ -57,17 +69,6 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
   app.use(morgan('combined', { stream: accessLogStream }));
 }
 
-/* Import routes */
-const farmers = require('./routes/farmers');
-const landAreas = require('./routes/landAreas');
-// const plants = require('./routes/plants');
-const seedTypes = require('./routes/seedTypes');
-const auth = require('./routes/auth');
-const vegetables = require('./routes/vegetables');
-
-/* Import errorHandler */
-const errorHandler = require('./middlewares/errorHandler');
-
 /* Enable req.body */
 app.use(express.json()); // Enable req.body JSON
 // Enable url-encoded
@@ -93,8 +94,9 @@ app.get('/', async (req, res, next) => {
 });
 
 app.use('/farmers', farmers);
+app.use('/harvests', harvests);
 app.use('/landAreas', landAreas);
-app.use('/plants', plants);
+app.use('/merchants', merchants);
 app.use('/seedTypes', seedTypes);
 app.use('/auth', auth);
 app.use('/vegetables', vegetables);

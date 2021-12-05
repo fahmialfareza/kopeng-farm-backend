@@ -35,18 +35,18 @@ passport.use(
         const data = await user.findOne({ username });
 
         if (!data) {
-          return done(null, false, { message: 'User is not found!' });
+          return done(null, false, { message: 'Pengguna tidak ditemukan!' });
         }
 
         const validate = await bcrypt.compare(password, data.password);
 
         if (!validate) {
-          return done(null, false, { message: 'Wrong password!' });
+          return done(null, false, { message: 'Password salah!' });
         }
 
-        return done(null, data, { message: 'Login success!' });
+        return done(null, data, { message: 'Berhasil masuk!' });
       } catch (e) {
-        return done(e, false, { message: "User can't be created" });
+        return done(e, false, { message: 'Pengguna tidak dapat dibuat!' });
       }
     }
   )
@@ -84,9 +84,9 @@ passport.use(
           return done(null, token);
         }
 
-        return done(null, false, { message: 'Forbidden access' });
+        return done(null, false, { message: 'Tidak diizinkan!' });
       } catch (error) {
-        return done(error, false, { message: 'Forbidden access' });
+        return done(error, false, { message: 'Tidak diizinkan!' });
       }
     }
   )
@@ -124,9 +124,9 @@ passport.use(
           return done(null, token);
         }
 
-        return done(null, false, { message: 'Forbidden access' });
+        return done(null, false, { message: 'Tidak diizinkan' });
       } catch (error) {
-        return done(error, false, { message: 'Forbidden access' });
+        return done(error, false, { message: 'Tidak diizinkan' });
       }
     }
   )
@@ -164,9 +164,9 @@ passport.use(
           return done(null, token);
         }
 
-        return done(null, false, { message: 'Forbidden access' });
+        return done(null, false, { message: 'Tidak diizinkan' });
       } catch (error) {
-        return done(error, false, { message: 'Forbidden access' });
+        return done(error, false, { message: 'Tidak diizinkan' });
       }
     }
   )

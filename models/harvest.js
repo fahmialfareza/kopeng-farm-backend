@@ -5,6 +5,7 @@ const harvestSchema = new mongoose.Schema(
     merchant: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      unique: true,
       ref: 'merchant',
     },
     production: {

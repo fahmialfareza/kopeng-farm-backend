@@ -10,11 +10,11 @@ exports.createOrUpdateUserValidator = async (req, res, next) => {
     const errorMessages = [];
 
     if (!req.body.name) {
-      errorMessages.push('Name is required!');
+      errorMessages.push('Nama wajib diisi!');
     }
 
     if (!validateUserName(req.body.username)) {
-      errorMessages.push('Username is not valid');
+      errorMessages.push('Username tidak valid!');
     }
 
     if (
@@ -27,11 +27,13 @@ exports.createOrUpdateUserValidator = async (req, res, next) => {
         returnScore: false,
       })
     ) {
-      errorMessages.push('Password is not strong enaugh');
+      errorMessages.push(
+        'Password harus mengandung huruf besar, kecil, dan angka serta minimal 8 karakter!'
+      );
     }
 
     if (!validator.isMobilePhone(req.body.mobileNumber, 'id-ID')) {
-      errorMessages.push('Mobile number is not valid');
+      errorMessages.push('Nomor HP tidak valid!');
     }
 
     if (errorMessages.length > 0) {
@@ -49,7 +51,7 @@ exports.signInValidator = async (req, res, next) => {
     const errorMessages = [];
 
     if (!validateUserName(req.body.username)) {
-      errorMessages.push('Username is not valid');
+      errorMessages.push('Username tidak valid!');
     }
 
     if (
@@ -61,7 +63,9 @@ exports.signInValidator = async (req, res, next) => {
         minSymbols: 0,
       })
     ) {
-      errorMessages.push('Password is not strong enaugh');
+      errorMessages.push(
+        'Password harus mengandung huruf besar, kecil, dan angka serta minimal 8 karakter!'
+      );
     }
 
     if (errorMessages.length > 0) {

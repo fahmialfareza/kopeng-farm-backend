@@ -1,0 +1,28 @@
+[
+  {
+    "_id": "61ac36a17080d1977c61e066",
+    "name": "Bawang Daun",
+    "price": 4000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 10,
+        "end": 11
+      }
+    ],
+    "commission": 6
+  },
+  {
+    "_id": "61ac36c5c50c852d0d777e3f",
+    "name": "Cabe Keriting Hijau",
+    "price": 9000,
+    "harvestsEstimation": [
+      {
+        "name": "Panen",
+        "start": 12,
+        "end": 13
+      }
+    ],
+    "commission": 2
+  }
+]

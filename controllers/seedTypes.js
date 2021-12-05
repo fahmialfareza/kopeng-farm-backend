@@ -1,12 +1,17 @@
-const { seedType } = require('../models');
+const { seedType, harvest } = require('../models');
 
 class SeedTypes {
   async getAllSeedTypes(req, res, next) {
     try {
-      const data = await seedType.find();
+      let data = await seedType.find().populate({ path: 'vegetable' });
+
+      data = data.filter((item) => item.vegetable !== null);
 
       if (data.length === 0) {
-        return next({ message: 'Seed Types not found', statusCode: 404 });
+        return next({
+          message: 'Jenis Bibit tidak ditemukan!',
+          statusCode: 404,
+        });
       }
 
       res.status(200).json({ data });
@@ -17,23 +22,18 @@ class SeedTypes {
 
   async getOneSeedType(req, res, next) {
     try {
-      const data = await seedType.findOne({ _id: req.params.id });
+      const data = await seedType
+        .findOne({ _id: req.params.id })
+        .populate({ path: 'vegetable' });
 
-      if (!data) {
-        return next({ message: 'Seed Type not found', statusCode: 404 });
+      if (!data || !data.vegetable) {
+        return next({
+          message: 'Jenis Bibit tidak ditemukan!',
+          statusCode: 404,
+        });
       }
 
       res.status(200).json({ data });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async createSeedType(req, res, next) {
-    try {
-      const data = await seedType.create(req.body);
-
-      res.status(201).json({ data });
     } catch (error) {
       next(error);
     }
@@ -48,24 +48,68 @@ class SeedTypes {
       );
 
       if (!data) {
-        return next({ message: 'Seed Type not found', statusCode: 404 });
+        return next({
+          message: 'Jenis Bibit tidak ditemukan!',
+          statusCode: 404,
+        });
+      }
+
+      // Update Harvests
+      const findHarvests = await harvest.find().populate({
+        path: 'merchant',
+        populate: [
+          {
+            path: 'farmer',
+            populate: { path: 'user', select: '-password' },
+          },
+          { path: 'landArea' },
+          {
+            path: 'seedType',
+            match: { _id: data._id },
+            populate: { path: 'vegetable' },
+          },
+        ],
+      });
+
+      if (findHarvests.length > 0) {
+        for (let i = 0; i < findHarvests.length; i++) {
+          if (findHarvests[i] && findHarvests[i].merchant) {
+            if (
+              findHarvests[i].merchant.farmer &&
+              findHarvests[i].merchant.landArea &&
+              findHarvests[i].merchant.seedType
+            ) {
+              if (
+                findHarvests[i].merchant.farmer.user &&
+                findHarvests[i].merchant.seedType.vegetable
+              ) {
+                const { totalAmount, commissionAmount } = findHarvests[i];
+                const seedTypePrice = data.price;
+                const debt =
+                  findHarvests[i].merchant.population * seedTypePrice;
+                const netAmount = totalAmount - commissionAmount - debt;
+
+                const updatedHarvest = {
+                  commissionAmount,
+                  totalAmount,
+                  debt,
+                  netAmount,
+                };
+
+                await harvest.findOneAndUpdate(
+                  { _id: findHarvests[i]._id },
+                  updatedHarvest,
+                  {
+                    new: true,
+                  }
+                );
+              }
+            }
+          }
+        }
       }
 
       res.status(201).json({ data });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async deleteSeedType(req, res, next) {
-    try {
-      const data = await seedType.deleteOne({ _id: req.params.id });
-
-      if (data.deletedCount === 0) {
-        return next({ message: 'Seed Type not found', statusCode: 404 });
-      }
-
-      res.status(200).json({ message: 'Seed Type has been deleted' });
     } catch (error) {
       next(error);
     }

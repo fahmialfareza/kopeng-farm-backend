@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const validator = require('validator');
 const { user } = require('../../models');
 
@@ -9,15 +10,15 @@ exports.createOrUpdateFarmerValidator = async (req, res, next) => {
       !validator.isNumeric(req.body.id_number) ||
       req.body.id_number.length !== 16
     ) {
-      errorMessages.push('ID Number must be 16 digits number!');
+      errorMessages.push('NIK harus 16 digit!');
     }
 
     if (!req.body.name) {
-      errorMessages.push('Name is required!');
+      errorMessages.push('Nama wajib diisi!');
     }
 
     if (!req.body.address) {
-      errorMessages.push('Address is required!');
+      errorMessages.push('Alamat wajib diisi!');
     }
 
     if (errorMessages.length > 0) {
@@ -30,7 +31,17 @@ exports.createOrUpdateFarmerValidator = async (req, res, next) => {
 
     if (userLogin.role === 'admin') {
       if (!req.body.user) {
-        errorMessages.push('User must be not empty!');
+        errorMessages.push('Korlap tidak boleh kosong!');
+      }
+
+      if (!mongoose.Types.ObjectId.isValid(req.body.user)) {
+        errorMessages.push('ID Korlap tidak valid!');
+      }
+
+      const findUser = await user.findOne({ _id: req.body.user });
+
+      if (!findUser) {
+        errorMessages.push('Korlap tidak ditemukan');
       }
     } else {
       req.body.user = userLogin._id;

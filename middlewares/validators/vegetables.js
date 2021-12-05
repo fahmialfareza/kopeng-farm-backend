@@ -5,11 +5,15 @@ exports.createOrUpdateVegetableValidator = async (req, res, next) => {
     const errorMessages = [];
 
     if (!req.body.name) {
-      errorMessages.push('Name is required!');
+      errorMessages.push('Nama wajib diisi!');
     }
 
-    if (!req.body.price) {
-      errorMessages.push('Price is required!');
+    if (!validator.isNumeric(req.body.price)) {
+      errorMessages.push('Harga wajib diisi!');
+    }
+
+    if (!validator.isNumeric(req.body.commission)) {
+      errorMessages.push('Potongan (persen) wajib diisi!');
     }
 
     if (errorMessages.length > 0) {

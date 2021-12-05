@@ -27,8 +27,10 @@ class Farmers {
           .populate('landAreas');
       }
 
+      data = data.filter((item) => item.user !== null);
+
       if (data.length === 0) {
-        return next({ message: 'Farmers not found', statusCode: 404 });
+        return next({ message: 'Petani tidak ditemukan!', statusCode: 404 });
       }
 
       res.status(200).json({ data });
@@ -48,7 +50,11 @@ class Farmers {
         .populate('landAreas');
 
       if (!data) {
-        return next({ message: 'Farmer not found', statusCode: 404 });
+        return next({ message: 'Petani tidak ditemukan!', statusCode: 404 });
+      }
+
+      if (!data.user) {
+        return next({ message: 'Petani tidak ditemukan!', statusCode: 404 });
       }
 
       res.status(200).json({ data });
@@ -76,7 +82,7 @@ class Farmers {
       );
 
       if (!data) {
-        return next({ message: 'Farmer not found', statusCode: 404 });
+        return next({ message: 'Petani tidak ditemukan!', statusCode: 404 });
       }
 
       res.status(201).json({ data });
@@ -90,10 +96,10 @@ class Farmers {
       const data = await farmer.deleteOne({ _id: req.params.id });
 
       if (data.deletedCount === 0) {
-        return next({ message: 'Farmer not found', statusCode: 404 });
+        return next({ message: 'Petani tidak ditemukan!', statusCode: 404 });
       }
 
-      res.status(200).json({ message: 'Farmer has been deleted' });
+      res.status(200).json({ message: 'Berhasil menghapus petani!' });
     } catch (error) {
       next(error);
     }

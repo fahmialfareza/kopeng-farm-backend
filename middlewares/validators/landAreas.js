@@ -7,11 +7,11 @@ exports.createOrUpdateLandAreaValidator = async (req, res, next) => {
     const errorMessages = [];
 
     if (!mongoose.Types.ObjectId.isValid(req.body.farmer)) {
-      errorMessages.push('id farmer is not valid!');
+      errorMessages.push('ID Petani tidak valid!');
     }
 
     if (!validator.isNumeric(req.body.area)) {
-      errorMessages.push('Area must be number!');
+      errorMessages.push('Luas Area harus angka!');
     }
 
     if (
@@ -19,17 +19,19 @@ exports.createOrUpdateLandAreaValidator = async (req, res, next) => {
       (!validator.isNumeric(req.body.coordinate.lat) ||
         !validator.isNumeric(req.body.coordinate.lng))
     ) {
-      errorMessages.push('Coordinate is not valid!');
+      errorMessages.push('Koordinat tidak valid!');
     }
 
     if (errorMessages.length > 0) {
       return next({ messages: errorMessages, statusCode: 400 });
     }
 
-    const data = await farmer.findOne({ _id: req.body.farmer });
+    const data = await farmer
+      .findOne({ _id: req.body.farmer })
+      .populate({ path: 'user' });
 
-    if (!data) {
-      errorMessages.push('Farmer is not exist');
+    if (!data || !data?.user) {
+      errorMessages.push('Petani tidak ditemukan');
     }
 
     if (errorMessages.length > 0) {

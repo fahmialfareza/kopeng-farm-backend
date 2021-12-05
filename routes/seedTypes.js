@@ -16,15 +16,11 @@ const {
 
 const router = express.Router();
 
-router
-  .route('/')
-  .get(adminOrUser, getAllSeedTypes)
-  .post(admin, createOrUpdateSeedTypeValidator, createSeedType);
+router.route('/').get(adminOrUser, getAllSeedTypes);
 
 router
   .route('/:id')
   .get(admin, getOneSeedType)
-  .put(admin, createOrUpdateSeedTypeValidator, updateSeedType)
-  .delete(admin, deleteSeedType);
+  .put(admin, createOrUpdateSeedTypeValidator, updateSeedType);
 
 module.exports = router;

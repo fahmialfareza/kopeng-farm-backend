@@ -1,6 +1,9 @@
 const faker = require('faker');
 const { seedType } = require('../models');
-const seedTypeData = require('../data/seedTypes.json');
+const seedTypeData =
+  process.env.NODE_ENV === 'production'
+    ? require('../data/seedTypes.json')
+    : require('../data/seedTypesDev.json');
 
 // Seeder add
 exports.addSeedTypes = async () => {

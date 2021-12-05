@@ -7,7 +7,7 @@ class Auth {
       const data = await user.find({ role: 'user' });
 
       if (data.length === 0) {
-        return next({ message: 'Users not found', statusCode: 404 });
+        return next({ message: 'Pengguna tidak ditemukan', statusCode: 404 });
       }
 
       res.status(200).json({ data });
@@ -21,7 +21,7 @@ class Auth {
       const data = await user.findOne({ _id: req.params.id });
 
       if (!data) {
-        return next({ message: 'User not found', statusCode: 404 });
+        return next({ message: 'Pengguna tidak ditemukan', statusCode: 404 });
       }
 
       res.status(200).json({ data });
@@ -51,7 +51,7 @@ class Auth {
       );
 
       if (!data) {
-        return next({ message: 'User not found', statusCode: 404 });
+        return next({ message: 'Pengguna tidak ditemukan', statusCode: 404 });
       }
 
       res.status(201).json({ data });
@@ -65,10 +65,10 @@ class Auth {
       const data = await user.deleteOne({ _id: req.params.id });
 
       if (data.deletedCount === 0) {
-        return next({ message: 'User not found', statusCode: 404 });
+        return next({ message: 'Pengguna tidak ditemukan', statusCode: 404 });
       }
 
-      res.status(200).json({ message: 'User has been deleted' });
+      res.status(200).json({ message: 'Pengguna tidak ditemukan' });
     } catch (error) {
       next(error);
     }

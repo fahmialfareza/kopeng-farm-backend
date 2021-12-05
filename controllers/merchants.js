@@ -1,9 +1,8 @@
-const { plant, user } = require('../models');
+const { merchant, user, harvest } = require('../models');
 const moment = require('moment');
-const xlsx = require('json-as-xlsx');
 
-class Plants {
-  async getAllPlants(req, res, next) {
+class Merchants {
+  async getAllMerchants(req, res, next) {
     try {
       let findData = {};
       let data = [];
@@ -18,7 +17,6 @@ class Plants {
           $lte: new Date(moment(req.query.createdAtEnd).add(1, 'days')),
         });
       req.query.farmer && (findData.farmer = req.query.farmer);
-      req.query.vegetable && (findData.vegetable = req.query.vegetable);
       req.query.plantDateStart &&
         (findData.plantDate = {
           $gte: new Date(req.query.plantDateStart),
@@ -34,17 +32,16 @@ class Plants {
         .select('-password');
 
       if (userLogin.role === 'admin') {
-        data = await plant
+        data = await merchant
           .find(findData)
           .populate({
             path: 'farmer',
             populate: { path: 'user', select: '-password' },
           })
           .populate('landArea')
-          .populate('seedType')
-          .populate('vegetable');
+          .populate({ path: 'seedType', populate: { path: 'vegetable' } });
       } else {
-        data = await plant
+        data = await merchant
           .find(findData)
           .populate({
             path: 'farmer',
@@ -57,11 +54,22 @@ class Plants {
             ],
           })
           .populate('landArea')
-          .populate('seedType')
-          .populate('vegetable');
+          .populate({ path: 'seedType', populate: { path: 'vegetable' } });
       }
 
-      data = data.filter((item) => item.farmer !== null);
+      if (data.length === 0) {
+        return next({ message: 'Mitra tidak ditemukan!', statusCode: 404 });
+      }
+
+      data = data.filter(
+        (item) =>
+          item.farmer !== null &&
+          item.landArea !== null &&
+          item.seedType !== null
+      );
+      data = data.filter(
+        (item) => item.farmer.user !== null && item.seedType.vegetable !== null
+      );
 
       data = data.map((item) => {
         return {
@@ -131,7 +139,7 @@ class Plants {
       });
 
       if (data.length === 0) {
-        return next({ message: 'Plants not found', statusCode: 404 });
+        return next({ message: 'Mitra tidak ditemukan!', statusCode: 404 });
       }
 
       res.status(200).json({ data });
@@ -140,20 +148,23 @@ class Plants {
     }
   }
 
-  async getDetailPlant(req, res, next) {
+  async getDetailMerchant(req, res, next) {
     try {
-      const data = await plant
-        .find({ _id: req.params.id })
+      const data = await merchant
+        .findOne({ _id: req.params.id })
         .populate({
           path: 'farmer',
           populate: { path: 'user', select: '-password' },
         })
         .populate('landArea')
-        .populate('seedType')
-        .populate('vegetable');
+        .populate({ path: 'seedType', populate: { path: 'vegetable' } });
 
-      if (!data) {
-        return next({ message: 'Plant not found', statusCode: 404 });
+      if (!data || !data.farmer || !data.landArea || !data.seedType) {
+        return next({ message: 'Mitra tidak ditemukan!', statusCode: 404 });
+      }
+
+      if (!data.farmer.user || !data.seedType.vegetable) {
+        return next({ message: 'Mitra tidak ditemukan!', statusCode: 404 });
       }
 
       res.status(200).json({ data });
@@ -162,14 +173,14 @@ class Plants {
     }
   }
 
-  async createPlant(req, res, next) {
+  async createMerchant(req, res, next) {
     try {
-      let data = await plant.create(req.body);
+      let data = await merchant.create(req.body);
 
-      data = await plant.findOne({ _id: data._id });
+      data = await merchant.findOne({ _id: data._id });
 
       if (!data) {
-        return next({ message: 'Plant not found', statusCode: 404 });
+        return next({ message: 'Mitra tidak ditemukan!', statusCode: 404 });
       }
 
       res.status(201).json({ data });
@@ -178,16 +189,44 @@ class Plants {
     }
   }
 
-  async updatePlant(req, res, next) {
+  async updateMerchant(req, res, next) {
     try {
-      const data = await plant.findOneAndUpdate(
-        { _id: req.params.id },
-        req.body,
-        { new: true }
-      );
+      const data = await merchant
+        .findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+        .populate({
+          path: 'farmer',
+          populate: { path: 'user', select: '-password' },
+        })
+        .populate('landArea')
+        .populate({ path: 'seedType', populate: { path: 'vegetable' } });
 
       if (!data) {
-        return next({ message: 'Plant not found', statusCode: 404 });
+        return next({ message: 'Mitra tidak ditemukan!', statusCode: 404 });
+      }
+
+      // Update harvests
+      const findHarvest = await harvest.findOne({ merchant: data._id });
+
+      if (findHarvest) {
+        const { totalAmount, commissionAmount } = findHarvest;
+        const seedTypePrice = data.seedType.price;
+        const debt = data.population * seedTypePrice;
+        const netAmount = totalAmount - commissionAmount - debt;
+
+        const updatedHarvest = {
+          commissionAmount,
+          totalAmount,
+          debt,
+          netAmount,
+        };
+
+        await harvest.findOneAndUpdate(
+          { _id: findHarvest._id },
+          updatedHarvest,
+          {
+            new: true,
+          }
+        );
       }
 
       res.status(201).json({ data });
@@ -196,19 +235,19 @@ class Plants {
     }
   }
 
-  async deletePlant(req, res, next) {
+  async deleteMerchant(req, res, next) {
     try {
-      const data = await plant.deleteOne({ _id: req.params.id });
+      const data = await merchant.deleteOne({ _id: req.params.id });
 
       if (data.deletedCount === 0) {
-        return next({ message: 'Plant not found', statusCode: 404 });
+        return next({ message: 'Mitra tidak ditemukan!', statusCode: 404 });
       }
 
-      res.status(200).json({ message: 'Plant has been deleted' });
+      res.status(200).json({ message: 'Mitra telah dihapus!' });
     } catch (error) {
       next(error);
     }
   }
 }
 
-module.exports = new Plants();
+module.exports = new Merchants();

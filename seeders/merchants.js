@@ -7,7 +7,7 @@ exports.addMerchants = async () => {
   let data = await Promise.all([
     farmer.find(),
     landArea.find(),
-    seedType.find(),
+    seedType.find().populate({ path: 'vegetable' }),
   ]);
 
   let harvestsEstimation = [];
@@ -16,21 +16,23 @@ exports.addMerchants = async () => {
     let plantDate = faker.datatype.datetime();
     let productionEstimation = Math.floor(Math.random() * 10000);
 
-    data[3][i % data[3].length].harvestsEstimation.map((data, index) => {
-      let startDate = moment(plantDate)
-        .add(data.start, 'weeks')
-        .format('YYYY-MM-DD');
-      let endDate = moment(plantDate)
-        .add(data.end, 'weeks')
-        .subtract(1, 'days')
-        .format('YYYY-MM-DD');
+    data[2][i % data[2].length].vegetable.harvestsEstimation.map(
+      (data, index) => {
+        let startDate = moment(plantDate)
+          .add(data.start, 'weeks')
+          .format('YYYY-MM-DD');
+        let endDate = moment(plantDate)
+          .add(data.end, 'weeks')
+          .subtract(1, 'days')
+          .format('YYYY-MM-DD');
 
-      harvestsEstimation.push({
-        name: data.name,
-        start: startDate,
-        end: endDate,
-      });
-    });
+        harvestsEstimation.push({
+          name: data.name,
+          start: startDate,
+          end: endDate,
+        });
+      }
+    );
 
     await merchant.create({
       farmer: data[0][i]._id,
@@ -41,7 +43,7 @@ exports.addMerchants = async () => {
       harvestsEstimation: harvestsEstimation,
       productionEstimation: productionEstimation,
       priceEstimation: eval(
-        data[3][i % data[3].length].price * productionEstimation
+        data[2][i % data[2].length].vegetable.price * productionEstimation
       ),
     });
 
