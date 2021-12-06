@@ -41,7 +41,7 @@ exports.createOrUpdateFarmerValidator = async (req, res, next) => {
       const findUser = await user.findOne({ _id: req.body.user });
 
       if (!findUser) {
-        errorMessages.push('Korlap tidak ditemukan');
+        errorMessages.push('Korlap tidak ditemukan!');
       }
     } else {
       req.body.user = userLogin._id;
