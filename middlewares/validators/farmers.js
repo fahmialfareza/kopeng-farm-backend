@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const { user } = require('../../models');
+const { user, landArea } = require('../../models');
 
 exports.createOrUpdateFarmerValidator = async (req, res, next) => {
   try {
@@ -49,6 +49,23 @@ exports.createOrUpdateFarmerValidator = async (req, res, next) => {
 
     if (errorMessages.length > 0) {
       return next({ messages: errorMessages, statusCode: 400 });
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteFarmerValidator = async (req, res, next) => {
+  try {
+    const data = await landArea.find({ farmer: req.params.id });
+
+    if (data.length > 0) {
+      return next({
+        message: 'Anda tidak bisa menghapus data ini!',
+        statusCode: 403,
+      });
     }
 
     next();

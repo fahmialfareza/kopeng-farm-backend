@@ -4,28 +4,7 @@ const moment = require('moment');
 class Merchants {
   async getAllMerchants(req, res, next) {
     try {
-      let findData = {};
       let data = [];
-
-      req.query.createdAtStart &&
-        (findData.createdAt = {
-          $gte: new Date(req.query.createdAtStart),
-        });
-      req.query.createdAtEnd &&
-        (findData.createdAt = {
-          ...findData.createdAt,
-          $lte: new Date(moment(req.query.createdAtEnd).add(1, 'days')),
-        });
-      req.query.farmer && (findData.farmer = req.query.farmer);
-      req.query.plantDateStart &&
-        (findData.plantDate = {
-          $gte: new Date(req.query.plantDateStart),
-        });
-      req.query.plantDateEnd &&
-        (findData.plantDate = {
-          ...findData.plantDate,
-          $lte: new Date(moment(req.query.plantDateEnd).add(1, 'days')),
-        });
 
       const userLogin = await user
         .findOne({ _id: req.user.user })
@@ -33,7 +12,7 @@ class Merchants {
 
       if (userLogin.role === 'admin') {
         data = await merchant
-          .find(findData)
+          .find()
           .populate({
             path: 'farmer',
             populate: { path: 'user', select: '-password' },
@@ -42,7 +21,7 @@ class Merchants {
           .populate({ path: 'seedType', populate: { path: 'vegetable' } });
       } else {
         data = await merchant
-          .find(findData)
+          .find()
           .populate({
             path: 'farmer',
             match: { user: userLogin._id },
@@ -61,15 +40,7 @@ class Merchants {
         return next({ message: 'Mitra tidak ditemukan!', statusCode: 404 });
       }
 
-      data = data.filter(
-        (item) =>
-          item.farmer !== null &&
-          item.landArea !== null &&
-          item.seedType !== null
-      );
-      data = data.filter(
-        (item) => item.farmer.user !== null && item.seedType.vegetable !== null
-      );
+      data = data.filter((item) => item.farmer !== null);
 
       data = data.map((item) => {
         return {
@@ -159,11 +130,7 @@ class Merchants {
         .populate('landArea')
         .populate({ path: 'seedType', populate: { path: 'vegetable' } });
 
-      if (!data || !data.farmer || !data.landArea || !data.seedType) {
-        return next({ message: 'Mitra tidak ditemukan!', statusCode: 404 });
-      }
-
-      if (!data.farmer.user || !data.seedType.vegetable) {
+      if (!data || !data.farmer) {
         return next({ message: 'Mitra tidak ditemukan!', statusCode: 404 });
       }
 

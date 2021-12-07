@@ -27,8 +27,6 @@ class Farmers {
           .populate('landAreas');
       }
 
-      data = data.filter((item) => item.user !== null);
-
       if (data.length === 0) {
         return next({ message: 'Petani tidak ditemukan!', statusCode: 404 });
       }
@@ -49,11 +47,7 @@ class Farmers {
         })
         .populate('landAreas');
 
-      if (!data) {
-        return next({ message: 'Petani tidak ditemukan!', statusCode: 404 });
-      }
-
-      if (!data.user) {
+      if (!data || !data.user) {
         return next({ message: 'Petani tidak ditemukan!', statusCode: 404 });
       }
 

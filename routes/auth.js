@@ -7,6 +7,7 @@ const { signin, admin, adminOrUser } = require('../middlewares/auth');
 const {
   createOrUpdateUserValidator,
   signInValidator,
+  deleteUserValidator,
 } = require('../middlewares/validators/auth');
 
 // Import controller
@@ -30,7 +31,7 @@ router.get('/me', adminOrUser, getMe);
 router.get('/', admin, getAllUsers);
 router.get('/:id', admin, getDetailUser);
 router.put('/:id', admin, createOrUpdateUserValidator, updateUser);
-router.delete('/:id', admin, deleteUser);
+router.delete('/:id', admin, deleteUserValidator, deleteUser);
 
 // Exports
 module.exports = router;

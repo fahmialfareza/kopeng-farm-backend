@@ -4,6 +4,7 @@ const { adminOrUser } = require('../middlewares/auth');
 
 const {
   createOrUpdateFarmerValidator,
+  deleteFarmerValidator,
 } = require('../middlewares/validators/farmers');
 
 const {
@@ -25,6 +26,6 @@ router
   .route('/:id')
   .get(adminOrUser, getDetailFarmer)
   .put(adminOrUser, createOrUpdateFarmerValidator, updateFarmer)
-  .delete(adminOrUser, deleteFarmer);
+  .delete(adminOrUser, deleteFarmerValidator, deleteFarmer);
 
 module.exports = router;

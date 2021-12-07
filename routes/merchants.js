@@ -4,6 +4,7 @@ const { adminOrUser } = require('../middlewares/auth');
 
 const {
   createOrUpdateMerchantValidator,
+  deleteMerchantValidator,
 } = require('../middlewares/validators/merchants');
 
 const {
@@ -25,6 +26,6 @@ router
   .route('/:id')
   .get(adminOrUser, getDetailMerchant)
   .put(adminOrUser, createOrUpdateMerchantValidator, updateMerchant)
-  .delete(adminOrUser, deleteMerchant);
+  .delete(adminOrUser, deleteMerchantValidator, deleteMerchant);
 
 module.exports = router;

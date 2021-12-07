@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 
 // Connect express to MongoDB with mongoose
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    autoIndex: true,
+  })
   .then(() => console.log('MongoDB Connected!'))
   .catch((err) => console.error(err));
 

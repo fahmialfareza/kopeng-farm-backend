@@ -29,7 +29,6 @@ class LandAreas {
       }
 
       data = data.filter((item) => item.farmer !== null);
-      data = data.filter((item) => item.farmer.user !== null);
 
       if (data.length === 0) {
         return next({ message: 'Lahan tidak ditemukan!', statusCode: 404 });
@@ -51,7 +50,7 @@ class LandAreas {
         },
       });
 
-      if (!data || !data?.farmer || !data.farmer.user) {
+      if (!data || !data.farmer) {
         return next({ message: 'Lahan tidak ditemukan!', statusCode: 404 });
       }
 

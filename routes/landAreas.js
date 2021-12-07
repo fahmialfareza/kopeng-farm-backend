@@ -4,6 +4,7 @@ const { adminOrUser } = require('../middlewares/auth');
 
 const {
   createOrUpdateLandAreaValidator,
+  deleteLandAreaValidator,
 } = require('../middlewares/validators/landAreas');
 
 const {
@@ -25,6 +26,6 @@ router
   .route('/:id')
   .get(adminOrUser, getDetailLandArea)
   .put(adminOrUser, createOrUpdateLandAreaValidator, updateLandArea)
-  .delete(adminOrUser, deleteLandArea);
+  .delete(adminOrUser, deleteLandAreaValidator, deleteLandArea);
 
 module.exports = router;

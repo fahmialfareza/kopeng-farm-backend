@@ -45,18 +45,7 @@ class Harvests {
         return next({ message: 'Data Panen tidak ditemukan', statusCode: 404 });
       }
 
-      data = data.filter((item) => item.merchant !== null);
-      data = data.filter(
-        (item) =>
-          item.merchant.farmer !== null &&
-          item.merchant.landArea !== null &&
-          item.merchant.seedType !== null
-      );
-      data = data.filter(
-        (item) =>
-          item.merchant.farmer.user !== null &&
-          item.merchant.seedType.vegetable !== null
-      );
+      data = data.filter((item) => item.merchant.farmer !== null);
 
       if (data.length === 0) {
         return next({ message: 'Data Panen tidak ditemukan', statusCode: 404 });
@@ -85,24 +74,6 @@ class Harvests {
       if (!data || !data.merchant) {
         return next({
           message: 'Data Panen tidak ditemukan',
-          statusCode: 404,
-        });
-      }
-
-      if (
-        !data.merchant.farmer ||
-        !data.merchant.landArea ||
-        !data.merchant.seedType
-      ) {
-        return next({
-          message: 'Data Panen tidak ditemukan!',
-          statusCode: 404,
-        });
-      }
-
-      if (!data.merchant.farmer.user || !data.merchant.seedType.vegetable) {
-        return next({
-          message: 'Data Panen tidak ditemukan!',
           statusCode: 404,
         });
       }

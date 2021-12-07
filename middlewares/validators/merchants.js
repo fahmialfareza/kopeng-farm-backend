@@ -1,7 +1,7 @@
 const validator = require('validator');
 const mongoose = require('mongoose');
 const moment = require('moment');
-const { farmer, landArea, seedType, vegetable } = require('../../models');
+const { farmer, landArea, seedType, harvest } = require('../../models');
 
 exports.createOrUpdateMerchantValidator = async (req, res, next) => {
   try {
@@ -90,6 +90,23 @@ exports.createOrUpdateMerchantValidator = async (req, res, next) => {
     req.body.priceEstimation = eval(
       data[2].vegetable.price * req.body.productionEstimation
     );
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteMerchantValidator = async (req, res, next) => {
+  try {
+    const harvests = await harvest.find({ merchant: req.params.id });
+
+    if (harvests.length > 0) {
+      return next({
+        message: 'Anda tidak bisa menghapus data ini!',
+        statusCode: 403,
+      });
+    }
 
     next();
   } catch (error) {
